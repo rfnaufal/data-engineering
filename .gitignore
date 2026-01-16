@@ -1,0 +1,24 @@
+# secrets
+.env
+*.key.json
+orchestration/kestra/secrets/
+
+# data (do not commit)
+data/
+*.parquet
+*.csv
+*.jsonl
+
+# python
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+
+# terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# kestra (optional local state)
+.kestra/
