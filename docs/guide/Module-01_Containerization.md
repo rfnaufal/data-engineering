@@ -74,4 +74,8 @@ Go to Codespaces tab <br>
 Click Open in Visual Studio Code <br>
 it will require Github Codespaces extensions in VS code.
 
+<img src="../screenshots/mod-01/1 CS to VSCode.png" width="75%"> <br>
 https://miniature-space-waddle-vjqr94gw7j2x4wg.github.dev/
+
+then check the terminal and run docker<br>
+<img src="../screenshots/mod-01/2 VScode.png" width="75%"> <br>
