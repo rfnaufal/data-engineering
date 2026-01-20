@@ -74,32 +74,36 @@ Go to Codespaces tab <br>
 Click Open in Visual Studio Code <br>
 it will require Github Codespaces extensions in VS code.
 
-<img src="../screenshots/mod-01/1 CS to VSCode.png" width="75%"> <br>
-https://miniature-space-waddle-vjqr94gw7j2x4wg.github.dev/
+<img src="../screenshots/1 CS to VSCode.png" width="75%"> <br>
 
 then check the terminal and run docker<br>
-<img src="../screenshots/mod-01/2 VScode.png" width="75%"> <br>
+<img src="../screenshots/2 VScode.png" width="75%"> <br>
 
 ### Managing Containers
 
 Run docker access to bash
+
 > docker run -it --entrypoint=bash python:3.13.11-slim
 
-<img src="../screenshots/mod-01/3 docker-python-bash.png" width="75%"> <br>
+<img src="../screenshots/3 docker-python-bash.png" width="75%"> <br>
 
 Show all docker status
+
 > docker ps -a
 
 Get all docker id
+
 > docker ps -aq
 
 To delete containers
+
 > docker rm \`docker ps -aq\`
 
-<img src="../screenshots/mod-01/4 docker.png" width="75%"> <br>
+<img src="../screenshots/4 docker.png" width="75%"> <br>
 
 Map Directory to container
+
 > docker run -it --rm -v $(pwd)/test:/app/test --entrypoint=bash python:3.13.11-slim
 
 Note: I add --rm so When the container exits, delete the container automatically.
-<img src="../screenshots/mod-01/5 map volume.png" width="75%"> <br>
+<img src="../screenshots/5 map volume.png" width="75%"> <br>
