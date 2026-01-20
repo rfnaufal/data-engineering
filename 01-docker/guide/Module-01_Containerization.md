@@ -1,4 +1,4 @@
-## Containerization and Infrastructure as Code
+## Containerization
 
 ### Create Repository
 
@@ -80,6 +80,8 @@ https://miniature-space-waddle-vjqr94gw7j2x4wg.github.dev/
 then check the terminal and run docker<br>
 <img src="../screenshots/mod-01/2 VScode.png" width="75%"> <br>
 
+### Managing Containers
+
 Run docker access to bash
 > docker run -it --entrypoint=bash python:3.13.11-slim
 
@@ -95,3 +97,9 @@ To delete containers
 > docker rm \`docker ps -aq\`
 
 <img src="../screenshots/mod-01/4 docker.png" width="75%"> <br>
+
+Map Directory to container
+> docker run -it --rm -v $(pwd)/test:/app/test --entrypoint=bash python:3.13.11-slim
+
+Note: I add --rm so When the container exits, delete the container automatically.
+<img src="../screenshots/mod-01/5 map volume.png" width="75%"> <br>
