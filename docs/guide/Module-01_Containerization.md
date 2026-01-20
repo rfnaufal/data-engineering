@@ -79,3 +79,19 @@ https://miniature-space-waddle-vjqr94gw7j2x4wg.github.dev/
 
 then check the terminal and run docker<br>
 <img src="../screenshots/mod-01/2 VScode.png" width="75%"> <br>
+
+Run docker access to bash
+> docker run -it --entrypoint=bash python:3.13.11-slim
+
+<img src="../screenshots/mod-01/3 docker-python-bash.png" width="75%"> <br>
+
+Show all docker status
+> docker ps -a
+
+Get all docker id
+> docker ps -aq
+
+To delete containers
+> docker rm \`docker ps -aq\`
+
+<img src="../screenshots/mod-01/4 docker.png" width="75%"> <br>
