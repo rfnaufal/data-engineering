@@ -53,4 +53,4 @@ print(f"Running pipeline for month {month}")
 then run
 > uv run python pipeline.py 10
 
-<img src="../screenshots/2-simple-pipeline.png" width="75%"> <br>
+<img src="../screenshots/2-datapipeline-uv.png" width="75%"> <br>
