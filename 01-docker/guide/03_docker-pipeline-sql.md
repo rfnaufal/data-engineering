@@ -48,3 +48,30 @@ We can now run the container and pass an argument to it, so that our pipeline wi
 <img src="../screenshots/03/docker-run.png" width="50%"> <br>
 
 ### Dockerized PostgreSQL
+
+```bash
+docker run -it --rm \
+  -e POSTGRES_USER="root" \
+  -e POSTGRES_PASSWORD="root" \
+  -e POSTGRES_DB="ny_taxi" \
+  -v ny_taxi_postgres_data:/var/lib/postgresql \
+  -p 5432:5432 \ 
+  postgres:18
+  ```
+
+<img src="../screenshots/03/docker-postgres.png" width="50%"> <br>
+
+<img src="../screenshots/03/docker-postgres-port.png" width="50%"> <br>
+
+I open another terminal di working directory (pipeline), then run to install pgcli:
+> uv add --dev pgcli
+
+it will add below script in the pyproject.toml file
+```
+[dependency-groups]
+dev = [
+    "pgcli>=4.4.0",
+]
+```
+
+<img src="../screenshots/03/pgcli.png" width="50%"> <br>
