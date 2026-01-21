@@ -10,7 +10,7 @@ uv add --dev jupyter
 
 it will add jupyter in the dependency-group
 
-<img src="../screenshots/03/jupyter.png" width="50%"> <br>
+<img src="../screenshots/04/jupyter.png" width="50%"> <br>
 
 ```bash
 uv run jupyter notebook
@@ -18,16 +18,16 @@ uv run jupyter notebook
 
 after runnning you will got the token, copy the token as shown below:
 
-<img src="../screenshots/03/uv-jupyter.png" width="50%"> <br>
+<img src="../screenshots/04/uv-jupyter.png" width="50%"> <br>
 
 click open the browser, or you also can access from PORTS tab next to TERMINAL.
 
 Then, paste the token
 
-<img src="../screenshots/03/jupyter-token.png" width="50%"> <br>
+<img src="../screenshots/04/jupyter-token.png" width="50%"> <br>
 Now you can access working directory(pipeline folder) in the docker host through Jupyter
 
-<img src="../screenshots/03/jupyter-login.png" width="50%"> <br>
+<img src="../screenshots/04/jupyter-login.png" width="50%"> <br>
 
 ### Use Case: NYC TLC Trip Record Dataset
 
@@ -86,7 +86,7 @@ e.g.:
 
 So pandas can’t confidently decide the dtype (int, float, string), and warns you.
 
-<img src="../screenshots/03/jupyter-nb.png" width="75%"> <br>
+<img src="../screenshots/04/jupyter-nb.png" width="75%"> <br>
 
 I  use df.info() to quickly confirm:
 
@@ -96,11 +96,11 @@ I  use df.info() to quickly confirm:
 
 - dataset shape
 
-<img src="../screenshots/03/df-info.png" width="75%"> <br>
+<img src="../screenshots/04/df-info.png" width="75%"> <br>
 
 for tpep_pickup_datetime column, it's suppose datetime but currently it's object which means string type. 
 
-<img src="../screenshots/03/dt-problem.png" width="75%"> <br>
+<img src="../screenshots/04/dt-problem.png" width="75%"> <br>
 
 #### Convert Datatypes (datetime columns)
 
@@ -139,8 +139,17 @@ df = pd.read_csv(
 
 ```
 
-<img src="../screenshots/03/force-dt.png" width="75%"> <br>
+<img src="../screenshots/04/force-dt.png" width="75%"> <br>
 
 and now tpep_pickup_datetime column change to datetime.
 
 #### Insert data into PostgreSQL using SQLAlchemy
+
+##### Install SQLAlchemy
+
+from the notebook, run 
+```
+!uv add sqlalchemy
+```
+
+<img src="../screenshots/04/install-alchemy.png" width="75%"> <br>
