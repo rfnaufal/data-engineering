@@ -268,3 +268,7 @@ uv run python ingest_data.py \
   --month=1 \
   --chunksize=100000
 ```
+
+<img src="../screenshots/04/result-ingest.png" width="75%"> <br>
+
+<img src="../screenshots/04/result-ingest-02.png" width="75%"> <br>
