@@ -11,6 +11,8 @@ However, installing packages globally can lead to dependency conflicts—especia
 
 **Use a virtual environment** instead
 
+#### UV
+
 We strongly recommend using a virtual environment, which creates an isolated Python setup for this project and keeps dependencies separate from your system Python and other projects.
 
 We’ll use uv, a modern and extremely fast Python package + project manager written in Rust. It’s significantly faster than pip and automatically manages virtual environments for your project.
@@ -31,6 +33,15 @@ Now let's add pandas:
 
 This adds pandas to your pyproject.toml and installs it in the virtual environment.
 <img src="../screenshots/2-datapipeline-uvinstall.png" width="75%"> <br>
+
+Comparing python version
+> uv run which python  # Python in the virtual environment <br>
+> uv run python -V
+
+> which python        # System Python <br>
+> python -V 
+
+<img src="../screenshots/3-datapipeline-manageuv.png" width="75%"> <br>
 
 ### Create simple Data Pipeline
 
@@ -53,7 +64,7 @@ print("cwd:", os.getcwd())
 ```
 
 then run
-> uv run python pipeline.py 10
+> uv run python pipeline/pipeline.py 10
 
 <img src="../screenshots/2-datapipeline-uv.png" width="75%"> <br>
 
