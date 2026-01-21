@@ -1,11 +1,5 @@
 ## Data Pipeline
 
-### Architecture Overview
-
-
-The diagram below illustrates the containerized workflow, where a Docker container runs a Python environment (managed with `uv`) and mounts a persistent host directory for data persistence. <br>
-<img src="../screenshots/02/0-docker-concept.png" width="50%"> <br>
-
 ### Install dependencies
 
 This project requires pandas, but it isn’t included by default. If you want to run and test the code locally before using the container, you’ll need to install the required Python packages.
