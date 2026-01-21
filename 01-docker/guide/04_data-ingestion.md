@@ -1,6 +1,6 @@
 ## Data Ingestion
 
-#### Install Jupyter
+### Install Jupyter
 
 Install Jupyter notebook in the docker host:
 
@@ -194,3 +194,46 @@ uv run pgcli -h localhost -p 5432 -u root -d ny_taxi
 ```
 
 <img src="../screenshots/04/validate-table.png" width="75%"> <br>
+
+### Ingesting Data in Chunks
+
+Optimize data ingestion with chunks.
+
+We don't want to insert all the data at once. Let's do it in batches and use an iterator for that:
+
+```
+df_iter = pd.read_csv(
+    url,
+    dtype=dtype,
+    parse_dates=parse_dates,
+    iterator = True,
+    chunksize=100000,
+)
+```
+
+#### Iterate Over Chunks
+
+```
+for df_chunk in df_iter:
+    print(len(df_chunk))
+```
+
+<img src="../screenshots/04/iterate-chunks.png" width="75%"> <br>
+
+#### Inserting Data
+
+Add library tqdm to show a progress bar while your code is running.
+```
+!uv add tqdm
+```
+
+```
+for df_chunk in tqdm(df_iter):
+    df_chunk.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')
+```
+
+<img src="../screenshots/04/insert-chunk-data.png" width="75%"> <br>
+
+#### Validating the Data
+
+<img src="../screenshots/04/validate-insert-data.png" width="75%"> <br>
