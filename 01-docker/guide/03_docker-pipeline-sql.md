@@ -51,7 +51,7 @@ We can now run the container and pass an argument to it, so that our pipeline wi
 
 First create the directory in the docker host, then map it:
 
-``` bash
+```bash
 mkdir ny_taxi_postgres_data
 ```
 
@@ -68,17 +68,13 @@ docker run -it --rm \
 ```
 
 - -e sets environment variables (user, password, database name)
-
 - -v ny_taxi_postgres_data:/var/lib/postgresql creates a named volume
 
-    - Docker manages this volume automatically
-
-    - Data persists even after container is removed
-
-    - Volume is stored in Docker's internal storage
+   - Docker manages this volume automatically
+   - Data persists even after container is removed
+   - Volume is stored in Docker's internal storage
 
 - -p 5432:5432 maps port 5432 from container to host
-
 - postgres:18 uses PostgreSQL version 18 (latest as of Dec 2025)
 
 Named Volume vs Bind Mount
@@ -89,6 +85,8 @@ Named Volume vs Bind Mount
 <img src="../screenshots/03/docker-postgres.png" width="50%"> <br>
 
 <img src="../screenshots/03/docker-postgres-port.png" width="50%"> <br>
+
+#### Install pgcli
 
 I open another terminal di working directory (pipeline), then run the command to install pgcli:
 
@@ -117,7 +115,8 @@ dev = [
 - -u is the username.
 - -d is the database name.
 - The password is not provided; it will be requested after running the command.
-When prompted, enter the password: root
+   When prompted, enter the password: root
 
 #### Test Create Table
+
 <img src="../screenshots/03/connect-pgcli.png" width="50%"> <br>
