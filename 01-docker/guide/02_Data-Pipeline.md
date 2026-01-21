@@ -57,5 +57,7 @@ then run
 
 <img src="../screenshots/2-datapipeline-uv.png" width="75%"> <br>
 
+it will create 10.parquet file in working directory
+
 as summary, here is the process from above script:
 <img src="../screenshots/3-datapipeline-process.png" width="75%"> <br>
