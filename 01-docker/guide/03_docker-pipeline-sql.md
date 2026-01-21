@@ -1,12 +1,14 @@
-## Dockerize
+## Dockerizing a Data Pipeline App (Python + SQL)
 
-### Dockerized Data Pipeline
-
-#### Architecture Overview
+### Architecture Overview
 
 
 The diagram below illustrates the containerized workflow, where a Docker container runs a Python environment (managed with `uv`) and mounts a persistent host directory for data persistence. <br>
-<img src="../screenshots/03/00_Concept.png" width="50%"> <br>
+<img src="../screenshots/03/00_concept.png" width="50%"> <br>
+
+### Dockerized Data Pipeline
+
+Create the following Dockerfile file:
 
 ```bash
 # Start with slim Python 3.13 image
@@ -33,5 +35,15 @@ COPY pipeline.py pipeline.py
 ENTRYPOINT ["python", "pipeline.py"]
 
 ```
+
+then build the image:
+> docker build -t test:pandas .
+
+<img src="../screenshots/03/docker-build.png" width="75%"> <br>
+
+We can now run the container and pass an argument to it, so that our pipeline will receive it:
+> docker run -it --rm test:pandas {some_number}
+
+<img src="../screenshots/03/docker-run.png" width="50%"> <br>
 
 ### Dockerized PostgreSQL
