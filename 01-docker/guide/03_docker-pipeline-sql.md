@@ -49,6 +49,14 @@ We can now run the container and pass an argument to it, so that our pipeline wi
 
 ### Dockerized PostgreSQL
 
+First create the directory in the docker host, then map it:
+
+``` bash
+mkdir ny_taxi_postgres_data
+```
+
+#### Running PostgreSQL in a Container
+
 ```bash
 docker run -it --rm \
   -e POSTGRES_USER="root" \
@@ -58,6 +66,25 @@ docker run -it --rm \
   -p 5432:5432 \ 
   postgres:18
 ```
+
+- -e sets environment variables (user, password, database name)
+
+- -v ny_taxi_postgres_data:/var/lib/postgresql creates a named volume
+
+    - Docker manages this volume automatically
+
+    - Data persists even after container is removed
+
+    - Volume is stored in Docker's internal storage
+
+- -p 5432:5432 maps port 5432 from container to host
+
+- postgres:18 uses PostgreSQL version 18 (latest as of Dec 2025)
+
+Named Volume vs Bind Mount
+
+- Named volume (name:/path): Managed by Docker, easier
+- Bind mount (/host/path:/container/path): Direct mapping to host filesystem, more control
 
 <img src="../screenshots/03/docker-postgres.png" width="50%"> <br>
 
@@ -79,3 +106,18 @@ dev = [
 ```
 
 <img src="../screenshots/03/pgcli.png" width="50%"> <br>
+
+#### Connect to Postgres
+
+> uv run pgcli -h localhost -p 5432 -u root -d ny_taxi
+
+- uv run executes a command in the context of the virtual environment
+- -h is the host. Since we're running locally we can use localhost.
+- -p is the port.
+- -u is the username.
+- -d is the database name.
+- The password is not provided; it will be requested after running the command.
+When prompted, enter the password: root
+
+#### Test Create Table
+<img src="../screenshots/03/connect-pgcli.png" width="50%"> <br>
