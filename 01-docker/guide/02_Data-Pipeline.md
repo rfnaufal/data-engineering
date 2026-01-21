@@ -30,7 +30,7 @@ Now let's add pandas:
 > uv add pandas pyarrow
 
 This adds pandas to your pyproject.toml and installs it in the virtual environment.
-
+<img src="../screenshots/2-datapipeline-uvinstall.png" width="75%"> <br>
 
 ### Create simple Data Pipeline
 
@@ -38,6 +38,7 @@ This adds pandas to your pyproject.toml and installs it in the virtual environme
 Let's create an example pipeline. First, create a directory named pipeline and inside, create a file pipeline.py:
 ```python
 import sys
+import os
 import pandas as pd
 print("arguments", sys.argv)
 month = int(sys.argv[1])
@@ -45,9 +46,10 @@ month = int(sys.argv[1])
 df = pd.DataFrame({"Day": [1, 2], "Num_passengers": [3, 4]})
 df['month'] = month
 print(df.head())
-
+#df.to_parquet(f"output_day_{sys.argv[1]}.parquet")
 df.to_parquet(f"{month}.parquet")
 print(f"Running pipeline for month {month}")
+print("cwd:", os.getcwd())
 ```
 
 then run
@@ -56,4 +58,4 @@ then run
 <img src="../screenshots/2-datapipeline-uv.png" width="75%"> <br>
 
 as summary, here is the process from above script:
-<img src="../screenshots/4-map-datapipeline-process.png" width="75%"> <br>
+<img src="../screenshots/3-datapipeline-process.png" width="75%"> <br>
