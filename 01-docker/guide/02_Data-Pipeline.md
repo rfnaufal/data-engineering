@@ -1,6 +1,10 @@
 ## Data Pipeline
 
-<img src="../screenshots/02/0-datapipeline-concept.png" width="50%"> <br>
+### Architecture Overview
+
+
+The diagram below illustrates the containerized workflow, where a Docker container runs a Python environment (managed with `uv`) and mounts a persistent host directory for data persistence. <br>
+<img src="../screenshots/02/0-docker-concept.png" width="50%"> <br>
 
 ### Install dependencies
 
@@ -54,6 +58,8 @@ To get list of installed packages
 <img src="../screenshots/02/manage-uv.png" width="75%"> <br>
 
 ### Create simple Data Pipeline
+
+<img src="../screenshots/02/0-datapipeline-concept.png" width="50%"> <br>
 
 
 Let's create an example pipeline. First, create a directory named pipeline and inside, create a file pipeline.py:
