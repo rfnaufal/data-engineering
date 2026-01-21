@@ -1,5 +1,7 @@
 ## Data Pipeline
 
+<img src="../screenshots/0-datapipeline-concept.png" width="50%"> <br>
+
 ### Install dependencies
 
 This project requires pandas, but it isn’t included by default. If you want to run and test the code locally before using the container, you’ll need to install the required Python packages.
