@@ -145,11 +145,52 @@ and now tpep_pickup_datetime column change to datetime.
 
 #### Insert data into PostgreSQL using SQLAlchemy
 
-##### Install SQLAlchemy
+##### Install SQLAlchemy and psycopg2-binary
 
-from the notebook, run 
+from the notebook, run:
 ```
 !uv add sqlalchemy
 ```
 
 <img src="../screenshots/04/install-alchemy.png" width="75%"> <br>
+
+SQLalchemy added into dependencies in the pyproject.toml
+
+<img src="../screenshots/04/alchemy-pyproject.png" width="75%"> <br>
+
+we also need library
+```
+!uv add psycopg2-binary
+```
+
+##### Create Database Connection
+
+```
+from sqlalchemy import create_engine
+engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')
+```
+
+##### Get DDL Schema
+
+```
+print(pd.io.sql.get_schema(df, name='yellow_taxi_data', con=engine))
+```
+
+<img src="../screenshots/04/create-db-connection.png" width="75%"> <br>
+
+##### Create the Table
+
+We will create the table only with the schema, no data yet.
+
+```
+df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')
+```
+
+<img src="../screenshots/04/create-table.png" width="75%"> <br>
+
+connect to Postgres from terminal, ensure in the pipeline folder as working directory then running:
+```
+uv run pgcli -h localhost -p 5432 -u root -d ny_taxi
+```
+
+<img src="../screenshots/04/validate-table.png" width="75%"> <br>
