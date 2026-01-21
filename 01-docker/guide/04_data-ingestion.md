@@ -330,10 +330,13 @@ docker build -t taxi_ingest:v001 .
 docker run -it --rm \
   --network=pg-network \
   taxi_ingest:v001 \
-    --user=root \
-    --password=root \
-    --host=pgdatabase \
-    --port=5432 \
-    --db=ny_taxi \
-    --table=yellow_taxi_trips
+  --pg-user=root \
+  --pg-pass=root \
+  --pg-host=localhost \
+  --pg-port=5432 \
+  --pg-db=ny_taxi \
+  --target-table=yellow_taxi_trips_2021_1 \
+  --year=2021 \
+  --month=1 \
+  --chunksize=100000
 ```
