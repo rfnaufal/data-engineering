@@ -41,6 +41,15 @@ A dictionary to understand each field is available here.
 
 > Note: The CSV data is stored as gzipped files. Pandas can read them directly.
 
+### Ingesting Data into Postgres
+
+In the Jupyter notebook, we will create code to:
+
+- Download the CSV file
+- Read it in chunks with pandas
+- Convert datetime columns
+- Insert data into PostgreSQL using SQLAlchemy
+
 #### Create Jupyter Notebook
 
 We will now create a Jupyter Notebook notebook.ipynb file which we will use to read a CSV file and export it to Postgres.
@@ -88,3 +97,50 @@ I  use df.info() to quickly confirm:
 - dataset shape
 
 <img src="../screenshots/03/df-info.png" width="75%"> <br>
+
+for tpep_pickup_datetime column, it's suppose datetime but currently it's object which means string type. 
+
+<img src="../screenshots/03/dt-problem.png" width="75%"> <br>
+
+#### Convert Datatypes (datetime columns)
+
+run below snippet to forces correct data types
+
+```python
+dtype = {
+    "VendorID": "Int64",
+    "passenger_count": "Int64",
+    "trip_distance": "float64",
+    "RatecodeID": "Int64",
+    "store_and_fwd_flag": "string",
+    "PULocationID": "Int64",
+    "DOLocationID": "Int64",
+    "payment_type": "Int64",
+    "fare_amount": "float64",
+    "extra": "float64",
+    "mta_tax": "float64",
+    "tip_amount": "float64",
+    "tolls_amount": "float64",
+    "improvement_surcharge": "float64",
+    "total_amount": "float64",
+    "congestion_surcharge": "float64"
+}
+
+parse_dates = [
+    "tpep_pickup_datetime",
+    "tpep_dropoff_datetime"
+]
+
+df = pd.read_csv(
+    url,
+    dtype=dtype,
+    parse_dates=parse_dates
+)
+
+```
+
+<img src="../screenshots/03/force-dt.png" width="75%"> <br>
+
+and now tpep_pickup_datetime column change to datetime.
+
+#### Insert data into PostgreSQL using SQLAlchemy
