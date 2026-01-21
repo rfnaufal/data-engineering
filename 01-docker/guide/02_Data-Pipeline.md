@@ -1,6 +1,6 @@
 ## Data Pipeline
 
-<img src="../screenshots/0-datapipeline-concept.png" width="50%"> <br>
+<img src="../screenshots/02/0-datapipeline-concept.png" width="50%"> <br>
 
 ### Install dependencies
 
@@ -34,7 +34,7 @@ Now let's add pandas:
 > uv add pandas pyarrow
 
 This adds pandas to your pyproject.toml and installs it in the virtual environment.
-<img src="../screenshots/2-datapipeline-uvinstall.png" width="75%"> <br>
+<img src="../screenshots/02/2-datapipeline-uvinstall.png" width="75%"> <br>
 
 Comparing python version
 > uv run which python  # Python in the virtual environment <br>
@@ -43,7 +43,15 @@ Comparing python version
 > which python        # System Python <br>
 > python -V 
 
-<img src="../screenshots/3-datapipeline-manageuv.png" width="75%"> <br>
+<img src="../screenshots/02/3-datapipeline-manageuv.png" width="75%"> <br>
+
+To get UV version
+> uv --version
+
+To get list of installed packages
+> uv pip list
+
+<img src="../screenshots/02/manage-uv.png" width="75%"> <br>
 
 ### Create simple Data Pipeline
 
@@ -68,9 +76,9 @@ print("cwd:", os.getcwd())
 then run
 > uv run python pipeline.py 10
 
-<img src="../screenshots/2-datapipeline-uv.png" width="75%"> <br>
+<img src="../screenshots/02/2-datapipeline-uv.png" width="75%"> <br>
 
 it will create 10.parquet file in working directory
 
 as summary, here is the process from above script:
-<img src="../screenshots/3-datapipeline-process.png" width="75%"> <br>
+<img src="../screenshots/02/3-datapipeline-process.png" width="75%"> <br>
