@@ -20,7 +20,7 @@ We strongly recommend using a virtual environment, which creates an isolated Pyt
 We’ll use uv, a modern and extremely fast Python package + project manager written in Rust. It’s significantly faster than pip and automatically manages virtual environments for your project.
 > pip install uv
 
-Initialize the project
+Initialize the project, ensure you are in the owrking directory to run these:
 
 Create a new Python project using Python 3.13:
 > uv init --python=3.13
@@ -66,7 +66,7 @@ print("cwd:", os.getcwd())
 ```
 
 then run
-> uv run python pipeline/pipeline.py 10
+> uv run python pipeline.py 10
 
 <img src="../screenshots/2-datapipeline-uv.png" width="75%"> <br>
 
