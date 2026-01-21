@@ -54,3 +54,6 @@ then run
 > uv run python pipeline.py 10
 
 <img src="../screenshots/2-datapipeline-uv.png" width="75%"> <br>
+
+as summary, here is the process from above script:
+<img src="../screenshots/4-map-datapipeline-process.png" width="75%"> <br>
