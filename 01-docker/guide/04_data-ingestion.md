@@ -237,3 +237,31 @@ for df_chunk in tqdm(df_iter):
 #### Validating the Data
 
 <img src="../screenshots/04/validate-insert-data.png" width="75%"> <br>
+
+### Convert Notebook to Ingestion Script
+
+```
+uv run jupyter nbconvert --to=script notebook.ipynb
+mv notebook.py ingest_data.py
+uv run python ingest_data.py
+```
+
+<img src="../screenshots/04/run-ingest-data.png" width="75%"> <br>
+
+We use click library to build command-line tools (CLI apps) easily.
+
+<img src="../screenshots/04/click-library.png" width="75%"> <br>
+
+### Running the Script
+
+The script reads data in chunks (100,000 rows at a time) to handle large files efficiently without running out of memory.
+
+```bash
+uv run python ingest_data.py \
+  --user=root \
+  --password=root \
+  --host=localhost \
+  --port=5432 \
+  --db=ny_taxi \
+  --table=yellow_taxi_trips
+```
