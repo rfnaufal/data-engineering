@@ -23,28 +23,28 @@ docker run -it \
 #### Connect pgAdmin to PostgreSQL
 
 1. Open browser and go to http://localhost:8085
-
 2. Login with:
+
    - Email: admin@admin.com
    - Password: root
 
 3. Right-click Servers → Register → Server
-
 4. Configure:
+
    - General tab
-     - Name: Local Docker
+      - Name: Local Docker
+
    - Connection tab
-     - Host: pgdatabase (the container name)
-     - Port: 5432
-     - Username: root
-     - Password: root
+      - Host: pgdatabase (the container name)
+      - Port: 5432
+      - Username: root
+      - Password: root
 
 5. Click Save
-
 6. Now you can explore the database using the pgAdmin interface ✅
 
 <img src="../screenshots/05/pgadmin-ui.png" width="50%"> <br>
 
 <img src="../screenshots/05/pgadmin-register.png" width="50%"> <br>
 
-<img src="../screenshots/05/pgadmin-show.png" width="75%"> <br>
+<img src="../screenshots/05/table.png" width="75%"> <br>
