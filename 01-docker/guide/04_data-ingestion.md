@@ -326,6 +326,18 @@ docker build -t taxi_ingest:v001 .
 
 ### Run containers on the same network
 
+#### Run the Containerized Database
+
+docker run -it --rm \
+-e POSTGRES_USER="root" \
+-e POSTGRES_PASSWORD="root" \
+-e POSTGRES_DB="ny_taxi" \
+-v ny_taxi_postgres_data:/var/lib/postgresql \
+-p 5432:5432 \
+--network=pg-network \
+--name pgdatabase \
+postgres:18 
+
 #### Run the Containerized Ingestion
 
 ```sh
@@ -341,20 +353,6 @@ docker run -it --rm \
   --year=2021 \
   --month=1 \
   --chunksize=100000
-```
-
-#### Run the Containerized Database
-
-```sh
-docker run -it --rm \
--e POSTGRES_USER="root" \
--e POSTGRES_PASSWORD="root" \
--e POSTGRES_DB="ny_taxi" \
--v ny_taxi_postgres_data:/var/lib/postgresql \
--p 5432:5432 \
---network=pg-network \
---name pgdatabase \
-postgres:18 
 ```
 
 #### Connect to Progres Database
