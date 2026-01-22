@@ -61,8 +61,9 @@ import pandas as pd
 
 # Read a sample of the data
 prefix = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/'
-df = pd.read_csv(prefix + 'yellow_tripdata_2021-01.csv.gz', nrows=100)
-
+#df = pd.read_csv(prefix + 'yellow_tripdata_2021-01.csv.gz', nrows=100)
+url = f'{prefix}/yellow_tripdata_2021-01.csv.gz'
+df = pd.read_csv(url)
 # Display first rows
 df.head()
 
