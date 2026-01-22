@@ -328,6 +328,7 @@ docker build -t taxi_ingest:v001 .
 
 #### Run the Containerized Database
 
+```
 docker run -it --rm \
 -e POSTGRES_USER="root" \
 -e POSTGRES_PASSWORD="root" \
@@ -337,6 +338,7 @@ docker run -it --rm \
 --network=pg-network \
 --name pgdatabase \
 postgres:18 
+```
 
 #### Run the Containerized Ingestion
 
