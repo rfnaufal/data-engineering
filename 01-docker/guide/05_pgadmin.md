@@ -48,3 +48,5 @@ docker run -it \
 <img src="../screenshots/05/pgadmin-register.png" width="50%"> <br>
 
 <img src="../screenshots/05/table.png" width="75%"> <br>
+
+<img src="../screenshots/05/test.png" width="75%"> <br>
