@@ -18,7 +18,7 @@ docker run -it \
   dpage/pgadmin4
 ```
 
-<img src="../screenshots/05/pgadmin-install.png" width="50%"> <br>
+<img src="../screenshots/05/pgadmin-install.png" width="75%"> <br>
 
 #### Connect pgAdmin to PostgreSQL
 
@@ -46,3 +46,5 @@ docker run -it \
 <img src="../screenshots/05/pgadmin-ui.png" width="50%"> <br>
 
 <img src="../screenshots/05/pgadmin-register.png" width="50%"> <br>
+
+<img src="../screenshots/05/pgadmin-show.png" width="75%"> <br>
