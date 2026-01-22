@@ -3,7 +3,7 @@
 ### Architecture Overview
 
 The diagram below illustrates the containerized workflow, where a Docker container runs a Python environment (managed with `uv`) and mounts a persistent host directory for data persistence. <br>
-<img src="../screenshots/03/00_concept.png" width="50%"> <br>
+<img src="../screenshots/05/00_concept.png" width="50%"> <br>
 
 ### Dockerized Data Pipeline
 
