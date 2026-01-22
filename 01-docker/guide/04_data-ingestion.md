@@ -273,6 +273,16 @@ uv run python ingest_data.py \
 
 <img src="../screenshots/04/result-ingest-02.png" width="75%"> <br>
 
+### Docker Networks
+
+Existing Docker Network
+
+<img src="../screenshots/04/existing-docker-network.png" width="75%"> <br>
+
+Because this setup involves multiple containers (Python application, PostgreSQL database, etc.) that must communicate internally, we create a dedicated Docker network. This allows containers to resolve each other by container name via Docker’s built-in DNS.
+
+`docker network create pg-network`
+
 ### Dockerizing the Ingestion Script
 
 Now let's containerize the ingestion script so we can run it in Docker.
@@ -307,22 +317,14 @@ Explanation:
 - COPY ingest_data.py .: Copy ingestion script
 - ENTRYPOINT ["python", "ingest_data.py"]: Set entry point to run the ingestion script
 
-#### Docker Networks
-
-Because this setup involves multiple containers (Python application, PostgreSQL database, etc.) that must communicate internally, we create a dedicated Docker network. This allows containers to resolve each other by container name via Docker’s built-in DNS.
-
-`docker network create pg-network`
-
-Existing Docker Network
-
-<img src="../screenshots/04/existing-docker-network.png" width="75%"> <br>
-
 #### Build the Docker Image
 
 ```
 cd pipeline
 docker build -t taxi_ingest:v001 .
 ```
+
+### Test all Containerized with Docker Network
 
 #### Run the Containerized Ingestion
 
@@ -332,11 +334,35 @@ docker run -it --rm \
   taxi_ingest:v001 \
   --pg-user=root \
   --pg-pass=root \
-  --pg-host=localhost \
+  --pg-host=pgdatabase \
   --pg-port=5432 \
   --pg-db=ny_taxi \
-  --target-table=yellow_taxi_trips_2021_1 \
+  --target-table=yellow_taxi_trips_2021_2 \
   --year=2021 \
   --month=1 \
   --chunksize=100000
 ```
+
+#### Run the Containerized Database
+
+```
+docker run -it --rm \
+-e POSTGRES_USER="root" \
+-e POSTGRES_PASSWORD="root" \
+-e POSTGRES_DB="ny_taxi" \
+-v ny_taxi_postgres_data:/var/lib/postgresql \
+-p 5432:5432 \
+--network=pg-network \
+--name pgdatabase \
+postgres:18 
+```
+
+#### Connect to Progres Database
+
+```
+uv run pgcli -h localhost -p 5432 -u root -d ny_taxi
+```
+
+#### Verify database
+
+<img src="../screenshots/04/verify-all-container.png" width="75%"> <br>
