@@ -77,11 +77,8 @@ We have warning here, because Pandas scanned the CSV and found that column index
 e.g.:
 
 - some rows look like numbers: 123
-
 - other rows look like text: N/A, -, unknown
-
 - or values have commas: 1,000
-
 - or some rows empty → becomes NaN
 
 So pandas can’t confidently decide the dtype (int, float, string), and warns you.
@@ -91,14 +88,12 @@ So pandas can’t confidently decide the dtype (int, float, string), and warns y
 I  use df.info() to quickly confirm:
 
 - dtype problems
-
 - missing values
-
 - dataset shape
 
 <img src="../screenshots/04/df-info.png" width="75%"> <br>
 
-for tpep_pickup_datetime column, it's suppose datetime but currently it's object which means string type. 
+for tpep_pickup_datetime column, it's suppose datetime but currently it's object which means string type.
 
 <img src="../screenshots/04/dt-problem.png" width="75%"> <br>
 
@@ -148,7 +143,8 @@ and now tpep_pickup_datetime column change to datetime.
 ##### Install SQLAlchemy and psycopg2-binary
 
 from the notebook, run:
-```
+
+```sh
 !uv add sqlalchemy
 ```
 
@@ -159,20 +155,21 @@ SQLalchemy added into dependencies in the pyproject.toml
 <img src="../screenshots/04/alchemy-pyproject.png" width="75%"> <br>
 
 we also need library
-```
+
+```sh
 !uv add psycopg2-binary
 ```
 
 ##### Create Database Connection
 
-```
+```sh
 from sqlalchemy import create_engine
 engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')
 ```
 
 ##### Get DDL Schema
 
-```
+```sh
 print(pd.io.sql.get_schema(df, name='yellow_taxi_data', con=engine))
 ```
 
@@ -182,14 +179,15 @@ print(pd.io.sql.get_schema(df, name='yellow_taxi_data', con=engine))
 
 We will create the table only with the schema, no data yet.
 
-```
+```sh
 df.head(n=0).to_sql(name='yellow_taxi_data', con=engine, if_exists='replace')
 ```
 
 <img src="../screenshots/04/create-table.png" width="75%"> <br>
 
 connect to Postgres from terminal, ensure in the pipeline folder as working directory then running:
-```
+
+```sh
 uv run pgcli -h localhost -p 5432 -u root -d ny_taxi
 ```
 
@@ -201,7 +199,7 @@ Optimize data ingestion with chunks.
 
 We don't want to insert all the data at once. Let's do it in batches and use an iterator for that:
 
-```
+```sql
 df_iter = pd.read_csv(
     url,
     dtype=dtype,
@@ -213,7 +211,7 @@ df_iter = pd.read_csv(
 
 #### Iterate Over Chunks
 
-```
+```sh
 for df_chunk in df_iter:
     print(len(df_chunk))
 ```
@@ -223,11 +221,12 @@ for df_chunk in df_iter:
 #### Inserting Data
 
 Add library tqdm to show a progress bar while your code is running.
-```
+
+```sh
 !uv add tqdm
 ```
 
-```
+```sh
 for df_chunk in tqdm(df_iter):
     df_chunk.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')
 ```
@@ -240,7 +239,7 @@ for df_chunk in tqdm(df_iter):
 
 ### Convert Notebook to Ingestion Script
 
-```
+```sh
 uv run jupyter nbconvert --to=script notebook.ipynb
 mv notebook.py ingest_data.py
 uv run python ingest_data.py
@@ -291,7 +290,7 @@ Now let's containerize the ingestion script so we can run it in Docker.
 
 The pipeline/Dockerfile shows how to containerize the ingestion script:
 
-```
+```sh
 FROM python:3.13.11-slim
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/
 
@@ -306,7 +305,7 @@ COPY ingest_data.py .
 ENTRYPOINT ["python", "ingest_data.py"]
 ```
 
-Explanation: 
+Explanation:
 
 - FROM python:3.13.11-slim: Start with slim Python 3.13 image for smaller size
 - COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/: Copy uv binary from official uv image
@@ -319,16 +318,16 @@ Explanation:
 
 #### Build the Docker Image
 
-```
+```sh
 cd pipeline
 docker build -t taxi_ingest:v001 .
 ```
 
-### Test all Containerized with Docker Network
+### Run containers on the same network
 
 #### Run the Containerized Ingestion
 
-```
+```sh
 docker run -it --rm \
   --network=pg-network \
   taxi_ingest:v001 \
@@ -345,7 +344,7 @@ docker run -it --rm \
 
 #### Run the Containerized Database
 
-```
+```sh
 docker run -it --rm \
 -e POSTGRES_USER="root" \
 -e POSTGRES_PASSWORD="root" \
@@ -359,7 +358,7 @@ postgres:18
 
 #### Connect to Progres Database
 
-```
+```sh
 uv run pgcli -h localhost -p 5432 -u root -d ny_taxi
 ```
 
