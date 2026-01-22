@@ -80,7 +80,6 @@ pickup_day_longest, longest_total_distance
 
 #### Notes (Approach)
 
-
 `.copy()` forces Pandas to create a separate DataFrame in memory, so changes to `taxi_trip_100` will NOT affect the original `taxi_trip`.
 
 taxi_trip_100 = taxi_trip.loc[taxi_trip["trip_distance"] < 100].copy()
@@ -88,19 +87,23 @@ taxi_trip_100 = taxi_trip.loc[taxi_trip["trip_distance"] < 100].copy()
 This question can be solved using **filter + transform + groupby + sum + max**:
 
 - **Filter (Remove Outliers)**
-  - Only consider trips with `trip_distance < 100` to exclude data errors/outliers.
+
+   - Only consider trips with `trip_distance < 100` to exclude data errors/outliers.
 
 - **Transform (Extract Pickup Day)**
-  - Create a new column `pickup_day` from `lpep_pickup_datetime`.
-  - This keeps only the **date part** (day) so trips can be grouped per day.
+
+   - Create a new column `pickup_day` from `lpep_pickup_datetime`.
+   - This keeps only the **date part** (day) so trips can be grouped per day.
 
 - **GroupBy + Sum**
-  - Group trips by `pickup_day`.
-  - Sum `trip_distance` to calculate the **total trip distance per day**.
+
+   - Group trips by `pickup_day`.
+   - Sum `trip_distance` to calculate the __total trip distance per day__.
 
 - **Max (Find the Top Day)**
-  - Use `idxmax()` to find the pickup day with the **largest total trip distance**.
-  - Use `max()` to get the **total distance value** for that day.
+
+   - Use `idxmax()` to find the pickup day with the **largest total trip distance**.
+   - Use `max()` to get the **total distance value** for that day.
 
 ## Q3: Biggest pickup zone
 
@@ -142,26 +145,31 @@ pickup_zone_sum.head(1)
 This question can be solved using **filter + join + groupby + sum + sort**:
 
 - **Filter (Date Range)**
-  - We only want trips on **November 18th, 2025**.
-  - Use `.between("2025-11-18", "2025-11-19", inclusive="left")` to include all trips on Nov 18, and exclude the upper bound (Nov 19).
+
+   - We only want trips on **November 18th, 2025**.
+   - Use `.between("2025-11-18", "2025-11-19", inclusive="left")` to include all trips on Nov 18, and exclude the upper bound (Nov 19).
 
 - **Join (`merge`)**
-  - The trip dataset only contains `PULocationID` (pickup location ID).
-  - We **join** with the `zones` lookup table to translate the ID into real zone information such as:
-    - `Borough`
-    - `Zone`
+
+   - The trip dataset only contains `PULocationID` (pickup location ID).
+   - We **join** with the `zones` lookup table to translate the ID into real zone information such as:
+      - `Borough`
+      - `Zone`
 
 - **Clean Missing Zones**
-  - Some trips may not have a matching zone after the join.
-  - Use `.dropna(subset=["Zone"])` to remove trips with unknown pickup zone names.
+
+   - Some trips may not have a matching zone after the join.
+   - Use `.dropna(subset=["Zone"])` to remove trips with unknown pickup zone names.
 
 - **GroupBy + Sum**
-  - Group trips by pickup zone (`Borough`, `Zone`)
-  - Sum `total_amount` to calculate the **total revenue per pickup zone**.
+
+   - Group trips by pickup zone (`Borough`, `Zone`)
+   - Sum `total_amount` to calculate the __total revenue per pickup zone__.
 
 - **Sort + Top Result**
-  - Sort the total revenue in descending order.
-  - The first row (`head(1)`) gives the pickup zone with the **largest total_amount**.
+
+   - Sort the total revenue in descending order.
+   - The first row (`head(1)`) gives the pickup zone with the __largest total_amount__.
 
 <img src="../screenshots/99/04.png" width="75%"> <br>
 
@@ -216,18 +224,22 @@ top_dropoff_zone
 This question can be solved using **join + filter + groupby + max**:
 
 - **Join (`merge`)**
-  - The trip dataset only contains `PULocationID` and `DOLocationID`.
-  - We **join** it with the `zones` lookup table so we can convert those IDs into real zone names (example: **East Harlem North**).
+
+   - The trip dataset only contains `PULocationID` and `DOLocationID`.
+   - We **join** it with the `zones` lookup table so we can convert those IDs into real zone names (example: **East Harlem North**).
 
 - **Filter**
-  - Keep only trips in **November 2025**
-  - Keep only trips where the **pickup zone = "East Harlem North"**
+
+   - Keep only trips in **November 2025**
+   - Keep only trips where the **pickup zone = "East Harlem North"**
 
 - **GroupBy**
-  - Group trips by **dropoff zone** so we can compare tips for each destination zone.
+
+   - Group trips by **dropoff zone** so we can compare tips for each destination zone.
 
 - **Max**
-  - The question says **largest tip** (singular), so we take the **maximum tip** (`tip_amount.max()`) for each dropoff zone.
-  - Then we select the dropoff zone with the **highest max tip**.
+
+   - The question says __largest tip__ (singular), so we take the __maximum tip__ (`tip_amount.max()`) for each dropoff zone.
+   - Then we select the dropoff zone with the **highest max tip**.
 
 <img src="../screenshots/99/06.png" width="75%"> <br>
