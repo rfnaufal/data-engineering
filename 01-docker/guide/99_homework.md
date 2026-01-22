@@ -1,4 +1,5 @@
 ## Data
+
 the green taxi trips data for November 2025:
 
 https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_2025-11.parquet
@@ -7,7 +8,7 @@ the dataset with zones:
 
 https://github.com/DataTalksClub/nyc-tlc-data/releases/download/misc/taxi_zone_lookup.csv
 
-To find the answer, I used a Jupyter Notebook in GitHub Codespaces. 
+To find the answer, I used a Jupyter Notebook in GitHub Codespaces.
 
 I downloaded the dataset and tested the Parquet file directly in the notebook.
 
@@ -26,20 +27,22 @@ For the trips in November 2025 (lpep_pickup_datetime between '2025-11-01' and '2
 This question can be solved using **filter + count**:
 
 - **Filter (Date Range)**
-  - Use `.between("2025-11-01", "2025-12-01", inclusive="left")` to select trips in **November 2025**.
-  - `inclusive="left"` means:
-    - include `2025-11-01`
-    - exclude `2025-12-01` (upper bound)
+
+   - Use `.between("2025-11-01", "2025-12-01", inclusive="left")` to select trips in **November 2025**.
+   - `inclusive="left"` means:
+      - include `2025-11-01`
+      - exclude `2025-12-01` (upper bound)
 
 - **Filter (Trip Distance)**
-  - Keep only trips where `trip_distance <= 1` mile.
+
+   - Keep only trips where `trip_distance <= 1` mile.
 
 - **Count Rows**
-  - Use `.shape[0]` to count how many rows (trips) match the conditions.
 
+   - Use `.shape[0]` to count how many rows (trips) match the conditions.
 
 - The `.between()` method supports an `inclusive` option to control whether the start/end boundaries are included.  
-  Here is the comparison:
+   Here is the comparison:
 
 | `inclusive` value | Start boundary included? | End boundary included? | Meaning (interval) | Sample interval (`start=10`, `end=20`) | Best use case |
 |------------------|--------------------------|-------------------------|-------------------|----------------------------------------|--------------|
@@ -50,9 +53,7 @@ This question can be solved using **filter + count**:
 
 ### Q2: Longest trip for each day
 
-To answer this question, we first exclude possible data errors by filtering out trips with `trip_distance >= 100`.  
-Then, we group trips by pickup day and calculate the **total trip distance per day**.  
-Finally, we use `idxmax()` to find the pickup day with the highest total distance.
+Which was the pick up day with the longest trip distance? Only consider trips with trip_distance less than 100 miles (to exclude data errors).
 
 ```python
 # Filter trips to exclude outliers/data errors
@@ -73,14 +74,16 @@ pickup_day_longest, longest_total_distance
 # Pickup day with the longest total trip distance: pickup_day_longest
 
 # Total trip distance on that day: longest_total_distance
+```
 
-### Notes 
+<img src="../screenshots/99/03.png" width="75%"> <br>
+
+#### Notes (Approach)
+
 
 `.copy()` forces Pandas to create a separate DataFrame in memory, so changes to `taxi_trip_100` will NOT affect the original `taxi_trip`.
 
 taxi_trip_100 = taxi_trip.loc[taxi_trip["trip_distance"] < 100].copy()
-
-#### (Approach)
 
 This question can be solved using **filter + transform + groupby + sum + max**:
 
@@ -98,8 +101,6 @@ This question can be solved using **filter + transform + groupby + sum + max**:
 - **Max (Find the Top Day)**
   - Use `idxmax()` to find the pickup day with the **largest total trip distance**.
   - Use `max()` to get the **total distance value** for that day.
-
-<img src="../screenshots/99/03.png" width="75%"> <br>
 
 ## Q3: Biggest pickup zone
 
@@ -134,6 +135,7 @@ pickup_zone_sum = (
 
 # Pickup zone with the largest total_amount
 pickup_zone_sum.head(1)
+```
 
 ### Notes (Approach)
 
@@ -169,8 +171,7 @@ This question can be solved using **filter + join + groupby + sum + sort**:
 
 For the passengers picked up in the zone named "East Harlem North" in November 2025, which was the drop off zone that had the largest tip?
 
-
-```python 
+```python
 # Convert pickup datetime column to datetime
 taxi_trip["lpep_pickup_datetime"] = pd.to_datetime(taxi_trip["lpep_pickup_datetime"])
 
@@ -208,6 +209,7 @@ dropoff_tip_max.head(10)
 
 top_dropoff_zone = dropoff_tip_max.idxmax()[1]  # [1] = zone name
 top_dropoff_zone
+```
 
 ### Notes (Approach)
 
