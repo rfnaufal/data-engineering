@@ -62,12 +62,12 @@ Assume:
 
 - t."PULocationID" = pickup location ID used as the join key
 
-| Join Type           | Meaning (simple)                       | Keeps rows from trips? | Keeps rows from zones? | When no match       | Sample Query (Taxi + Zones)                                                                                              |
-| ------------------- | -------------------------------------- | ---------------------- | ---------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **INNER JOIN**      | Keep only rows where both tables match | Only matched trips     | Only matched zones     | Row is excluded     | `SELECT t.*, z."Zone"<br>FROM yellow_taxi_trips t<br>INNER JOIN zones z<br>  ON t."PULocationID" = z."LocationID";`      |
-| **LEFT JOIN**       | Keep all trips, zones added if match   | ✅ Yes (all trips)      | Only matched zones     | Zone columns = NULL | `SELECT t.*, z."Zone"<br>FROM yellow_taxi_trips t<br>LEFT JOIN zones z<br>  ON t."PULocationID" = z."LocationID";`       |
-| **RIGHT JOIN**      | Keep all zones, trips added if match   | Only matched trips     | ✅ Yes (all zones)      | Trip columns = NULL | `SELECT t.*, z."Zone"<br>FROM yellow_taxi_trips t<br>RIGHT JOIN zones z<br>  ON t."PULocationID" = z."LocationID";`      |
-| **FULL OUTER JOIN** | Keep everything from both tables       | ✅ Yes (all trips)      | ✅ Yes (all zones)      | Missing side = NULL | `SELECT t.*, z."Zone"<br>FROM yellow_taxi_trips t<br>FULL OUTER JOIN zones z<br>  ON t."PULocationID" = z."LocationID";` |
+| Join Type           | Meaning (simple)                       | Keeps rows from trips? | Keeps rows from zones? | When no match           | Sample Query (Taxi + Zones)                                                                                                                                                |
+| ------------------- | -------------------------------------- | ---------------------- | ---------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **INNER JOIN**      | Keep only rows where both tables match | Only matched trips     | Only matched zones     | Row is **excluded**     | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>INNER JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>      |
+| **LEFT JOIN**       | Keep all trips, zones added if match   | ✅ Yes (all trips)      | Only matched zones     | Zone columns = **NULL** | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>LEFT JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>       |
+| **RIGHT JOIN**      | Keep all zones, trips added if match   | Only matched trips     | ✅ Yes (all zones)      | Trip columns = **NULL** | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>RIGHT JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>      |
+| **FULL OUTER JOIN** | Keep everything from both tables       | ✅ Yes (all trips)      | ✅ Yes (all zones)      | Missing side = **NULL** | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>FULL OUTER JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code> |
 
 ⭐ Quick rule of thumb
 
