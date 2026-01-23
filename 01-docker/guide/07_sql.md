@@ -1,4 +1,4 @@
-## SQL
+# SQL
 
 We will convert data to sql:
 
@@ -45,6 +45,39 @@ engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')
 ### Test Query
 
 <img src="../screenshots/07/test-query.png" width="75%"> <br>
+
+## JOINS
+
+SQL JOIN is used to combine data from two tables based on a related column (key).
+
+In this example, the yellow_taxi_trips table stores trip details, but pickup locations are stored only as IDs. By joining it with the zones 
+
+lookup table, we can convert those IDs into readable location names (Borough and Zone).
+
+Assume:
+
+- yellow_taxi_trips t = trip records (fact table)
+
+- zones z = lookup table (LocationID → Borough / Zone)
+
+- t."PULocationID" = pickup location ID used as the join key
+
+| Join Type           | Meaning (simple)                       | Keeps rows from trips? | Keeps rows from zones? | When no match           | Sample Query (Taxi + Zones)                                                                                                     |
+| ------------------- | -------------------------------------- | ---------------------- | ---------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **INNER JOIN**      | Keep only rows where both tables match | Only matched trips     | Only matched zones     | Row is **excluded**     | `sql\nSELECT t.*, z.\"Zone\"\nFROM yellow_taxi_trips t\nINNER JOIN zones z\n  ON t.\"PULocationID\" = z.\"LocationID\";\n`      |
+| **LEFT JOIN**       | Keep all trips, zones added if match   | ✅ Yes (all trips)      | Only matched zones     | Zone columns = **NULL** | `sql\nSELECT t.*, z.\"Zone\"\nFROM yellow_taxi_trips t\nLEFT JOIN zones z\n  ON t.\"PULocationID\" = z.\"LocationID\";\n`       |
+| **RIGHT JOIN**      | Keep all zones, trips added if match   | Only matched trips     | ✅ Yes (all zones)      | Trip columns = **NULL** | `sql\nSELECT t.*, z.\"Zone\"\nFROM yellow_taxi_trips t\nRIGHT JOIN zones z\n  ON t.\"PULocationID\" = z.\"LocationID\";\n`      |
+| **FULL OUTER JOIN** | Keep everything from both tables       | ✅ Yes (all trips)      | ✅ Yes (all zones)      | Missing side = **NULL** | `sql\nSELECT t.*, z.\"Zone\"\nFROM yellow_taxi_trips t\nFULL OUTER JOIN zones z\n  ON t.\"PULocationID\" = z.\"LocationID\";\n` |
+
+⭐ Quick rule of thumb
+
+INNER JOIN → normal reporting/analytics (clean matched data)
+
+LEFT JOIN → safest choice when you don’t want to lose data
+
+⚠️ RIGHT JOIN → rarely used --> prefer LEFT JOIN rewrite (changing RIGHT JOIN into LEFT JOIN by swapping tables, without changing the result.)
+
+FULL OUTER JOIN → auditing and mismatch checks
 
 ### Inner Joins
 
