@@ -65,7 +65,7 @@ Assume:
 - zones z = lookup table (LocationID → Borough / Zone)
 - t."PULocationID" = pickup location ID used as the join key
 
-| Join Type           | Meaning (simple)                       | Keeps rows from trips? | Keeps rows from zones? | When no match           | Sample Query (Taxi + Zones)                                                                                                                                                |
+| Join Type           | Meaning                       | Keeps rows from trips? | Keeps rows from zones? | When no match           | Sample Query (Taxi + Zones)                                                                                                                                                |
 | ------------------- | -------------------------------------- | ---------------------- | ---------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | __INNER JOIN__      | Keep only rows where both tables match | Only matched trips     | Only matched zones     | Row is __excluded__     | <code>SELECT t._, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>INNER JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>      |
 | __LEFT JOIN__       | Keep all trips, zones added if match   | ✅ Yes (all trips)      | Only matched zones     | Zone columns = __NULL__ | <code>SELECT t._, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>LEFT JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>       |
@@ -76,9 +76,9 @@ Assume:
 
 - **INNER JOIN** → Best for normal reporting/analytics (returns only matched rows)
 - **OUTER JOIN types** (keep unmatched rows):
-  - LEFT JOIN (LEFT OUTER JOIN) → Safest choice when you don’t want to lose trips (unmatched zones become `NULL`)
-  - RIGHT JOIN (RIGHT OUTER JOIN) → Rarely used; usually rewritten as LEFT JOIN by swapping table order (same result)
-  - FULL OUTER JOIN → Useful for auditing and mismatch checks (keeps everything from both tables)
+  - LEFT JOIN (LEFT OUTER JOIN) → Safest choice when you don’t want to lose trips; also common for data quality checks (unmatched zones become `NULL`)
+  - RIGHT JOIN (RIGHT OUTER JOIN) → **Rarely used**; usually rewritten as LEFT JOIN by swapping table order (same result)
+  - FULL OUTER JOIN → Best for auditing/reconciliation and deeper data quality checks (find mismatches on both sides)
 
 ### Inner Joins
 
@@ -156,7 +156,7 @@ LIMIT 100;
 
 ```
 
-Going forward, I will focus on explicit INNER JOIN syntax, because it is the preferred industry best practice for writing clear and maintainable SQL.
+Going forward, I will focus on using explicit INNER JOIN syntax, as it is the preferred industry best practice for writing clear and maintainable SQL.
 
 ##### Test Explicit Join with limit
 
@@ -172,11 +172,11 @@ Going forward, I will focus on explicit INNER JOIN syntax, because it is the pre
 
 ### Outer Joins
 
-| Join Type                           | Outer Join? | Keeps rows from trips (`yellow_taxi_trips`)? | Keeps rows from zones (`zones`)? | When no match               | Sample Query                                                                                                                                                               |
-| ----------------------------------- | ----------- | -------------------------------------------- | -------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **LEFT JOIN** (`LEFT OUTER JOIN`)   | ✅ Yes       | ✅ Yes (all trips)                            | Only matched zones               | Zones columns become `NULL` | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>LEFT JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>       |
-| **RIGHT JOIN** (`RIGHT OUTER JOIN`) | ✅ Yes       | Only matched trips                           | ✅ Yes (all zones)                | Trip columns become `NULL`  | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>RIGHT JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>      |
-| **FULL OUTER JOIN**                 | ✅ Yes       | ✅ Yes (all trips)                            | ✅ Yes (all zones)                | Missing side becomes `NULL` | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>FULL OUTER JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code> |
+| Join Type                           | Keeps rows from trips (`yellow_taxi_trips`)? | Keeps rows from zones (`zones`)? | When no match               |
+| ----------------------------------- | -------------------------------------------- | -------------------------------- | --------------------------- |
+| **LEFT JOIN** (`LEFT OUTER JOIN`)   | ✅ Yes (all trips)                            | Only matched zones               | Zones columns become `NULL` |
+| **RIGHT JOIN** (`RIGHT OUTER JOIN`) | Only matched trips                           | ✅ Yes (all zones)                | Trip columns become `NULL`  |
+| **FULL OUTER JOIN**                 | ✅ Yes (all trips)                            | ✅ Yes (all zones)                | Missing side becomes `NULL` |
 
 #### Left Join
 
