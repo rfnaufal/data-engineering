@@ -170,22 +170,6 @@ Going forward, I will focus on using explicit INNER JOIN syntax, as it is the pr
 
 <img src="../screenshots/07/explicit-with-where.png" width="75%"> <br>
 
-### Outer Joins
-
-| Join Type                           | Keeps rows from trips (`yellow_taxi_trips`)? | Keeps rows from zones (`zones`)? | When no match               |
-| ----------------------------------- | -------------------------------------------- | -------------------------------- | --------------------------- |
-| **LEFT JOIN** (`LEFT OUTER JOIN`)   | ✅ Yes (all trips)                            | Only matched zones               | Zones columns become `NULL` |
-| **RIGHT JOIN** (`RIGHT OUTER JOIN`) | Only matched trips                           | ✅ Yes (all zones)                | Trip columns become `NULL`  |
-| **FULL OUTER JOIN**                 | ✅ Yes (all trips)                            | ✅ Yes (all zones)                | Missing side becomes `NULL` |
-
-#### Left Join
-
-<img src="../screenshots/07/left.png" width="75%"> <br>
-
-#### Right Join
-
-<img src="../screenshots/07/right.png" width="75%"> <br>
-
 ## Data Quality Checks
 
 ### Checking for NULL Location IDs
@@ -195,3 +179,25 @@ Going forward, I will focus on using explicit INNER JOIN syntax, as it is the pr
 ### Checking for Location IDs NOT IN Zones Table
 
 <img src="../screenshots/07/locationid-zones.png" width="75%"> <br>
+
+### Outer Joins
+
+| Join Type                           | Keeps rows from trips (`yellow_taxi_trips`)? | Keeps rows from zones (`zones`)? | When no match               |
+| ----------------------------------- | -------------------------------------------- | -------------------------------- | --------------------------- |
+| **LEFT JOIN**    | ✅ Yes (all trips)                            | Only matched zones               | Zones columns become `NULL` |
+| **RIGHT JOIN** | Only matched trips                           | ✅ Yes (all zones)                | Trip columns become `NULL`  |
+| **FULL OUTER JOIN**                 | ✅ Yes (all trips)                            | ✅ Yes (all zones)                | Missing side becomes `NULL` |
+
+Notes: 
+
+Left table = yellow_taxi_trips (because it comes after FROM)
+
+Right table = zones (because it comes after LEFT JOIN)
+
+#### Left Join
+
+<img src="../screenshots/07/left.png" width="75%"> <br>
+
+#### Right Join
+
+<img src="../screenshots/07/right.png" width="75%"> <br>
