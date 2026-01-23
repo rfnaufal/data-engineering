@@ -20,13 +20,19 @@ and also ingest the data by running taxi_ingest container.
 
 When I tried to load the CSV file into the database, I encountered the error below.
 
-It turns out SQLAlchemy is required.
-
-<img src="../screenshots/07/prereq.png" width="75%"> <br>
+It turns out SQLAlchemy is required, because `df_zones.to_sql()` needs a database engine/connection layer to communicate with PostgreSQL.
 
 Note:
+I already installed sqlalchemy and psycopg2-binary in the previous steps. The issue was solved after creating the SQLAlchemy engine using the code below:
 
-I already installed sqlsqlalchemy and psycopg2-binary in the previous steps
+```sql
+from sqlalchemy import create_engine
+
+engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')
+
+```
+
+<img src="../screenshots/07/prereq.png" width="75%"> <br>
 
 ### Test Query
 
@@ -44,8 +50,8 @@ An INNER JOIN combines two tables and returns only the rows that match in both t
 
 | Join style                            | How it’s written                | Where join condition lives | Sample                                                                                             | Pros                                                  | Cons                                                           |
 | ------------------------------------- | ------------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------------------- |
-| **Implicit INNER JOIN** (old style)   | List tables separated by commas | `WHERE` clause             | `sql\nSELECT t.trip_id, z.Zone\nFROM trips t, zones z\nWHERE t.PULocationID = z.LocationID;\n`     | Short syntax                                          | Harder to read, easy to make mistakes, risky for large queries |
-| **Explicit INNER JOIN** (recommended) | Use `JOIN ... ON ...`           | `ON` clause                | `sql\nSELECT t.trip_id, z.Zone\nFROM trips t\nJOIN zones z\n  ON t.PULocationID = z.LocationID;\n` | Clear, safe, easy to maintain, standard in modern SQL | Slightly longer syntax                                         |
+| __Implicit INNER JOIN__ (old style)   | List tables separated by commas | `WHERE` clause             | `sql\nSELECT t.trip_id, z.Zone\nFROM trips t, zones z\nWHERE t.PULocationID = z.LocationID;\n`     | Short syntax                                          | Harder to read, easy to make mistakes, risky for large queries |
+| __Explicit INNER JOIN__ (recommended) | Use `JOIN ... ON ...`           | `ON` clause                | `sql\nSELECT t.trip_id, z.Zone\nFROM trips t\nJOIN zones z\n  ON t.PULocationID = z.LocationID;\n` | Clear, safe, easy to maintain, standard in modern SQL | Slightly longer syntax                                         |
 
 #### Implicit Inner Joins
 
