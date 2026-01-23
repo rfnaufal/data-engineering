@@ -34,6 +34,14 @@ engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')
 
 <img src="../screenshots/07/prereq.png" width="75%"> <br>
 
+<img src="../screenshots/07/rows.png" width="75%"> <br>
+
+265 = total number of zone records in your df_zones dataset
+
+- `len(df_zones)` → returns the number of rows in the DataFrame
+
+- `df_zones.shape[0]` → also returns the number of rows (shape = (rows, columns))
+
 ### Test Query
 
 <img src="../screenshots/07/test-query.png" width="75%"> <br>
