@@ -39,35 +39,38 @@ engine = create_engine('postgresql://root:root@localhost:5432/ny_taxi')
 265 = total number of zone records in your df_zones dataset
 
 - `len(df_zones)` → returns the number of rows in the DataFrame
-
 - `df_zones.shape[0]` → also returns the number of rows (shape = (rows, columns))
 
 ### Test Query
 
 <img src="../screenshots/07/test-query.png" width="75%"> <br>
 
+## How to Read an SQL Query (Logical Order)
+
+Here is a visual guide on how to read an SQL query in logical order. Since I don’t frequently work with SQL in my current role, I’m including this as a quick refresher to help me review and understand SQL query structure more effectively.
+
+<img src="../screenshots/07/read-sql.png" width="30%"> <br>
+
 ## JOINS
 
 SQL JOIN is used to combine data from two tables based on a related column (key).
 
-In this example, the yellow_taxi_trips table stores trip details, but pickup locations are stored only as IDs. By joining it with the zones 
+In this example, the yellow_taxi_trips table stores trip details, but pickup locations are stored only as IDs. By joining it with the zones
 
 lookup table, we can convert those IDs into readable location names (Borough and Zone).
 
 Assume:
 
 - yellow_taxi_trips t = trip records (fact table)
-
 - zones z = lookup table (LocationID → Borough / Zone)
-
 - t."PULocationID" = pickup location ID used as the join key
 
 | Join Type           | Meaning (simple)                       | Keeps rows from trips? | Keeps rows from zones? | When no match           | Sample Query (Taxi + Zones)                                                                                                                                                |
 | ------------------- | -------------------------------------- | ---------------------- | ---------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **INNER JOIN**      | Keep only rows where both tables match | Only matched trips     | Only matched zones     | Row is **excluded**     | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>INNER JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>      |
-| **LEFT JOIN**       | Keep all trips, zones added if match   | ✅ Yes (all trips)      | Only matched zones     | Zone columns = **NULL** | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>LEFT JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>       |
-| **RIGHT JOIN**      | Keep all zones, trips added if match   | Only matched trips     | ✅ Yes (all zones)      | Trip columns = **NULL** | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>RIGHT JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>      |
-| **FULL OUTER JOIN** | Keep everything from both tables       | ✅ Yes (all trips)      | ✅ Yes (all zones)      | Missing side = **NULL** | <code>SELECT t.*, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>FULL OUTER JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code> |
+| __INNER JOIN__      | Keep only rows where both tables match | Only matched trips     | Only matched zones     | Row is __excluded__     | <code>SELECT t._, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>INNER JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>      |
+| __LEFT JOIN__       | Keep all trips, zones added if match   | ✅ Yes (all trips)      | Only matched zones     | Zone columns = __NULL__ | <code>SELECT t._, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>LEFT JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>       |
+| __RIGHT JOIN__      | Keep all zones, trips added if match   | Only matched trips     | ✅ Yes (all zones)      | Trip columns = __NULL__ | <code>SELECT t._, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>RIGHT JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code>      |
+| __FULL OUTER JOIN__ | Keep everything from both tables       | ✅ Yes (all trips)      | ✅ Yes (all zones)      | Missing side = __NULL__ | <code>SELECT t._, z."Zone"</code><br><code>FROM yellow_taxi_trips t</code><br><code>FULL OUTER JOIN zones z</code><br><code>  ON t."PULocationID" = z."LocationID";</code> |
 
 ⭐ Quick rule of thumb
 
@@ -88,8 +91,8 @@ An INNER JOIN combines two tables and returns only the rows that match in both t
 
 | Join style                            | How it’s written                | Where join condition lives | Sample                                                                                                                                              | Pros                                                  | Cons                                                           |
 | ------------------------------------- | ------------------------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------------------- |
-| **Implicit INNER JOIN** (old style)   | List tables separated by commas | `WHERE` clause             | <code>SELECT t.trip_id, z.Zone</code><br><code>FROM trips t, zones z</code><br><code>WHERE t.PULocationID = z.LocationID;</code>                    | Short syntax                                          | Harder to read, easy to make mistakes, risky for large queries |
-| **Explicit INNER JOIN** (recommended) | Use `JOIN ... ON ...`           | `ON` clause                | <code>SELECT t.trip_id, z.Zone</code><br><code>FROM trips t</code><br><code>JOIN zones z</code><br><code>  ON t.PULocationID = z.LocationID;</code> | Clear, safe, easy to maintain, standard in modern SQL | Slightly longer syntax                                         |
+| __Implicit INNER JOIN__ (old style)   | List tables separated by commas | `WHERE` clause             | <code>SELECT t.trip_id, z.Zone</code><br><code>FROM trips t, zones z</code><br><code>WHERE t.PULocationID = z.LocationID;</code>                    | Short syntax                                          | Harder to read, easy to make mistakes, risky for large queries |
+| __Explicit INNER JOIN__ (recommended) | Use `JOIN ... ON ...`           | `ON` clause                | <code>SELECT t.trip_id, z.Zone</code><br><code>FROM trips t</code><br><code>JOIN zones z</code><br><code>  ON t.PULocationID = z.LocationID;</code> | Clear, safe, easy to maintain, standard in modern SQL | Slightly longer syntax                                         |
 
 #### Implicit Inner Joins
 
@@ -153,3 +156,15 @@ LIMIT 100;
 ```
 
 Going forward, I will focus on explicit INNER JOIN syntax, because it is the preferred industry best practice for writing clear and maintainable SQL.
+
+##### Test Explicit Join with limit
+
+<img src="../screenshots/07/explicit.png" width="75%"> <br>
+
+##### Test Explicit Join without alias
+
+<img src="../screenshots/07/explicit-no-alias.png" width="75%"> <br>
+
+##### Test Explicit Join with WHERE filters
+
+<img src="../screenshots/07/explicit-with-where.png" width="75%"> <br>
