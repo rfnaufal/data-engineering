@@ -116,20 +116,40 @@ LIMIT 100;
 #### Explicit Inner Joins
 
 ```sql
+-- Purpose:
+-- Join taxi trip records with the zones lookup table
+-- to map pickup/dropoff Location IDs into Borough and Zone information.
+
 SELECT
-    tpep_pickup_datetime,
-    tpep_dropoff_datetime,
-    total_amount,
-    CONCAT(zpu."Borough", ' | ', zpu."Zone") AS "pickup_loc",
-    CONCAT(zdo."Borough", ' | ', zdo."Zone") AS "dropoff_loc"
+    -- Trip timestamps from yellow_taxi_trips table
+    t.tpep_pickup_datetime,
+    t.tpep_dropoff_datetime,
+
+    -- Total fare amount for the trip
+    t.total_amount,
+
+    -- CONCAT() combines multiple text values into a single string:
+    -- Borough + " | " + Zone
+    CONCAT(zpu."Borough", ' | ', zpu."Zone") AS pickup_loc,
+
+    -- Same CONCAT() logic for dropoff location
+    CONCAT(zdo."Borough", ' | ', zdo."Zone") AS dropoff_loc
 FROM
+    -- Main fact table: each row represents one taxi trip
     yellow_taxi_trips t
-JOIN
--- or INNER JOIN but it's less used, when writing JOIN, postgreSQL understands implicitly that we want to use an INNER JOIN
-    zones zpu ON t."PULocationID" = zpu."LocationID"
-JOIN
-    zones zdo ON t."DOLocationID" = zdo."LocationID"
+
+    -- Join pickup zones:
+    -- JOIN in PostgreSQL is equivalent to INNER JOIN
+JOIN zones zpu
+    ON t."PULocationID" = zpu."LocationID"
+
+    -- Join dropoff zones (zones table joined again using a different alias)
+JOIN zones zdo
+    ON t."DOLocationID" = zdo."LocationID"
+
+-- Limit results for preview/testing
 LIMIT 100;
+
 ```
 
 Going forward, I will focus on explicit INNER JOIN syntax, because it is the preferred industry best practice for writing clear and maintainable SQL.
