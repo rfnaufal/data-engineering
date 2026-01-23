@@ -37,6 +37,8 @@ services:
       - "pgadmin_data:/var/lib/pgadmin"
     ports:
       - "8085:80"
+    depends_on:
+      - pgdatabase
 
 
 
