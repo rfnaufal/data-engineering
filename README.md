@@ -6,7 +6,7 @@ This repository contains homework submissions and learning materials from the Da
 
 | Module | Description | Link |
 |--------|-------------|------|
-| __Module 1__ | Docker fundamentals and environment setup for data engineering workflows | [Go to Module 1](01-docker/README.md) |
+| __Module 1__ | Docker fundamentals using GitHub Codespaces for cloud-based development environments | [Go to Module 1](01-docker/README.md) |
 
 ---
 
