@@ -7,14 +7,8 @@ This repository contains homework submissions and learning materials from the Da
 | Module | Description | Link |
 |--------|-------------|------|
 | __Module 1__ | Docker fundamentals using GitHub Codespaces for cloud-based development environments | [Go to Module 1](01-docker/README.md) |
+| __Module 2__ | Workflow orchestration using Kestra to build and run data pipelines | [Go to Module 2](02-workflow-orchestration/README.md) |
 
----
-
-### 📂 Module 1 Resources
-
-- 📘 Guide: https://github.com/rfnaufal/data-engineering/tree/main/01-docker/guide  
-- 📝 Homework: https://github.com/rfnaufal/data-engineering/blob/main/01-docker/guide/99_homework.md  
-- 🛠 Working Directory: https://github.com/rfnaufal/data-engineering/tree/main/pipeline  
 
 ---
 
