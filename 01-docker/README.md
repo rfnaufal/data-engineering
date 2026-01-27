@@ -2,7 +2,6 @@
 
 ## 📂 Module Resources
 
-- 📘 Guide: https://github.com/rfnaufal/data-engineering/tree/main/01-docker/guide  
 - 📝 Homework: https://github.com/rfnaufal/data-engineering/blob/main/01-docker/guide/99_homework.md  
 - 🛠 Working Directory: https://github.com/rfnaufal/data-engineering/tree/main/pipeline  
 
