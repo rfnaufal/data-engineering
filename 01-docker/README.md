@@ -1,39 +1,34 @@
-# Module 01 -- Docker, SQL and Terraform
+# Module 01 – Containerization & Data Pipeline Foundations
 
-## 📚 Topics Covered
+## 📂 Module Resources
 
-In this module, I learned:
+- 📘 Guide: https://github.com/rfnaufal/data-engineering/tree/main/01-docker/guide  
+- 📝 Homework: https://github.com/rfnaufal/data-engineering/blob/main/01-docker/guide/99_homework.md  
+- 🛠 Working Directory: https://github.com/rfnaufal/data-engineering/tree/main/pipeline  
 
--   Docker fundamentals and containerized development environments\
--   Running services using Docker and Docker Compose\
--   Basic SQL for querying and validating data\
--   Using Terraform for simple infrastructure provisioning  
+---
 
-------------------------------------------------------------------------
-
-## 📝 Homework
-
-Homework and exercises for this module:
-
-👉 [Guide Homework](guide/99_homework.md)
-
-------------------------------------------------------------------------
-
-## 🗒️ Notes
+## 🗒️ Guide and Notes
 
 Personal technical notes for this module:
 
-👉 [Docker Basics](notes/01-docker-basics.md)\
-👉 [Docker Images & Containers](notes/02-images-containers.md)\
-👉 [Codespaces Workflow](notes/03-codespaces.md)
+👉 [Docker Basics – Containerization](guide/01_Containerization.md)  
+👉 [Building Data Pipelines](guide/02_Data-Pipeline.md)  
+👉 [Docker + PostgreSQL Workflow](guide/03_docker-pipeline-postgresql.md)  
+👉 [Data Ingestion Processes](guide/04_data-ingestion.md)  
+👉 [Managing PostgreSQL with pgAdmin](guide/05_pgadmin.md)  
+👉 [Multi-Service Setup with Docker Compose](guide/06_docker-compose.md)  
+👉 [SQL Fundamentals for Data Engineering](guide/07_sql.md)  
 
 ------------------------------------------------------------------------
 
 ## 🚀 What I Built / Practiced
 
--   Running services in Docker containers\
--   Managing environments without local installs\
--   Understanding container-based workflows for data engineering
+- Containerized data engineering environments  
+- End-to-end pipeline execution in Docker  
+- PostgreSQL-backed ingestion workflows  
+- Multi-container orchestration using Docker Compose  
+- SQL querying for data validation and exploration  
 
 ------------------------------------------------------------------------
 
