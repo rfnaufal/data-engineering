@@ -8,7 +8,7 @@ We will reuse the existing `docker-compose.yaml` with some adjustments to suppor
 
 ## Concept
 
-In data engineering, workflow orchestration referes to the automation and coordination of tasks that 
+In data engineering, workflow orchestration refers to the automation and coordination of tasks that 
 
 process and move data across system. Instead of manually running jobs one-by one, orchestration 
 
