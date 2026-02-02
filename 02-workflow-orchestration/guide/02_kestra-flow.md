@@ -59,3 +59,5 @@ Based on the sample flow, each task includes its own set of properties, along wi
 When we execute the workflow, Kestra will prompt for the `name` input, using the default value we defined.
 
 <img src="ss/02/input.png" width="75%">
+
+### Orchestrate Python Code
