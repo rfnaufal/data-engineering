@@ -19,7 +19,7 @@ ensure that:
 this of orchestration as conductor of a data pipeline. 
 
 Kestra position as workflow orchestration that can build workflow as code, on code or with AI.
-<img src="guide/ss/diagram.png" width="75%"> <br>
+<img src="guide/ss/diagram.png" width="75%"> 
 
 ## 📂 Module Resources
 
