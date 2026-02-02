@@ -22,12 +22,11 @@ Once you understand flows, creating orchestration becomes much easier.
 
 ### Creating Workflows (Flows)
 
-Now that we understand the core concept, let’s create our first workflow.
+Now that we understand the core concept, let’s use our first workflow.
 
-In this module, we’ll start by uploading a provided workflow directly in the Kestra UI.  
-This is the fastest way to explore how flows work visually.
+Kestra already provides a sample flow in the Flow Dashboard, which we’ll use to explore how flows work in practice.
 
-Later on, we’ll also create workflows programmatically by sending POST requests to Kestra’s API, which is more suitable for real production and automation.
+In general, workflows can be created either through the UI or programmatically via Kestra’s API using POST requests, which is more suitable for real production and automation.
 
 ---
 
