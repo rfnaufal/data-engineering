@@ -13,14 +13,12 @@ In data engineering, workflow orchestration referes to the automation and coordi
 process and move data across system. Instead of manually running jobs one-by one, orchestration 
 
 ensure that:
-
 - taks run in the right order
 - dependencies between tasks are handled
 
 this of orchestration as conductor of a data pipeline. 
 
 Kestra position as workflow orchestration that can build workflow as code, on code or with AI.
-
 <img src="guide/ss/diagram.png" width="75%"> <br>
 
 ## 📂 Module Resources
