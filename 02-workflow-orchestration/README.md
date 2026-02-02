@@ -6,7 +6,7 @@ In this module, we will start developing the workflow orchestration using Kestra
 We will reuse the existing `docker-compose.yaml` with some adjustments to support Kestra.
 
 
-# Module 02 – Workflow Orchestration
+## Workflow Orchestration Concept
 
 In data engineering, workflow orchestration referes to the automation and coordination of tasks that 
 
