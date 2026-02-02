@@ -7,7 +7,7 @@ Before building any workflows, let’s briefly understand how Kestra organizes a
 In Kestra, everything is built around the idea of **flows**.
 
 Flows are defined using simple YAML syntax. At a minimum, each flow needs an `id`, a `namespace`, and a list of `tasks`. 
-Once a flow is created, its `namespace` and `id` cannot be changed.
+Once a flow is saved, its `namespace` and `id` cannot be changed.
 
 However, task IDs can be updated if needed.
 
@@ -53,3 +53,9 @@ Here’s what this workflow includes:
 
 
 <img src="ss/02/edit-flows.png" width="75%">
+
+Based on the sample flow, each task includes its own set of properties, along with explanations and examples.
+
+When we execute the workflow, Kestra will prompt for the `name` input, using the default value we defined.
+
+<img src="ss/02/input.png" width="75%">
