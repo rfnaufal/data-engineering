@@ -6,17 +6,24 @@ Before building any workflows, let’s briefly understand how Kestra organizes a
 
 In Kestra, everything is built around the idea of **flows**.
 
+Flows are defined using simple YAML syntax. At a minimum, each flow needs an `id`, a `namespace`, and a list of `tasks`. 
+Once a flow is created, its `namespace` and `id` cannot be changed.
+
+However, task IDs can be updated if needed.
+
+Other fields like triggers, labels, inputs, and outputs are optional, depending on how advanced your workflow needs to be.
+
 <img src="ss/02/flows.png" width="75%">
 
 A flow represents an end-to-end workflow composed of:
 
-- tasks — what gets executed
-- triggers — when it runs
-- dependencies — execution order and conditions
-- inputs — parameters passed into the flow
-- outputs — data produced and shared between tasks
+- **tasks** — what gets executed  
+- **triggers** — when it runs  
+- **dependencies** — execution order and conditions  
+- **inputs** — parameters passed into the flow  
+- **outputs** — data produced and shared between tasks  
 
-Once you understand flows, creating orchestration becomes much easier.
+Once you understand flows, building orchestration becomes much easier.
 
 ---
 
@@ -44,8 +51,5 @@ Here’s what this workflow includes:
 - Plugin defaults that send all log messages at the `ERROR` level  
 - A concurrency limit of two executions — any additional runs while two are active will fail
 
-Note:
-
-Once a flow is created, its namespace and id CANNOT be changed.
 
 <img src="ss/02/edit-flows.png" width="75%">
