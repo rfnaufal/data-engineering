@@ -29,9 +29,9 @@ Later on, we’ll also create workflows programmatically by sending POST request
 
 ---
 
-### Exploring the `01_hello_world.yaml` Flow
+### Exploring the Hello-World Flow
 
-The `01_hello_world.yaml` flow brings all of these concepts together in a simple example.
+The [`01_hello_world.yaml`](https://github.com/rfnaufal/data-engineering/blob/main/02-workflow-orchestration/flows/01_hello_world.yaml) flow brings all of these concepts together in these example.
 
 Here’s what this workflow includes:
 
