@@ -2,12 +2,38 @@
 
 ### Concept
 
-Navigate to the existing project directory
+Before building any workflows, let’s briefly understand how Kestra organizes automation.
 
-cd /workspaces/data-engineering/pipeline in the codespace and create two folders:
-- kestra_postgres_data
-- kestra_data
+In Kestra, everything is built around the idea of **flows**.
 
-These directories will be used to persist data for Postgres and Kestra.
+- **Flows** represent an end-to-end data pipeline made up of tasks, triggers, and dependencies.  
+  They help us automate, monitor, and scale workflows in a structured way.
 
-### Add Flows 
+Once you understand flows, creating orchestration becomes much easier.
+
+---
+
+### Creating Workflows (Flows)
+
+Now that we understand the core concept, let’s create our first workflow.
+
+In this module, we’ll start by uploading a provided workflow directly in the Kestra UI.  
+This is the fastest way to explore how flows work visually.
+
+Later on, we’ll also create workflows programmatically by sending POST requests to Kestra’s API, which is more suitable for real production and automation.
+
+---
+
+### Exploring the `01_hello_world.yaml` Flow
+
+The `01_hello_world.yaml` flow brings all of these concepts together in a simple example.
+
+Here’s what this workflow includes:
+
+- Five tasks in total: three log tasks and one sleep task  
+- An input called `name`  
+- A variable that uses the `name` input to generate a full welcome message  
+- An output created from the return task and logged in a later log task  
+- A trigger that runs the flow every day at 10 AM  
+- Plugin defaults that send all log messages at the `ERROR` level  
+- A concurrency limit of two executions — any additional runs while two are active will fail
