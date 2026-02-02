@@ -6,8 +6,13 @@ Before building any workflows, let’s briefly understand how Kestra organizes a
 
 In Kestra, everything is built around the idea of **flows**.
 
-- **Flows** represent an end-to-end data pipeline made up of tasks, triggers, and dependencies.  
-  They help us automate, monitor, and scale workflows in a structured way.
+A flow represents an end-to-end workflow composed of:
+
+- tasks — what gets executed
+- triggers — when it runs
+- dependencies — execution order and conditions
+- inputs — parameters passed into the flow
+- outputs — data produced and shared between tasks
 
 Once you understand flows, creating orchestration becomes much easier.
 
