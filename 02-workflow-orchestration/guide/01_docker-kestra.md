@@ -33,3 +33,7 @@ To access Kestra from your local browser, manually forward the following ports i
 - 8080 — Kestra API
 
 <img src="ss/01-addport.png" width="75%">
+
+<img src="ss/01-pgadmin.png" width="75%">
+
+<img src="ss/01-kestra.png" width="75%">
