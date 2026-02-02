@@ -15,3 +15,5 @@ In the `docker-compose.yaml`, we will add a container for Kestra along with its 
 
 To do this, we need to replace the `docker-compose.yaml` from Module 2 in the working directory.  
 Before that, I copied the previous `docker-compose.yaml` file into the `01-docker` folder.
+
+run 'docker-compose up` to run docker
