@@ -16,4 +16,9 @@ In the `docker-compose.yaml`, we will add a container for Kestra along with its 
 To do this, we need to replace the `docker-compose.yaml` from Module 2 in the working directory.  
 Before that, I copied the previous `docker-compose.yaml` file into the `01-docker` folder.
 
-run 'docker-compose up` to run docker
+run `docker compose up` command then monitor using `docker compose ps` 
+
+to access from my laptop to codespace add port manually in this order:
+1. add port 8085
+2. then port 8080
+<img src="ss/01-addport.png" width="75%"> <br>
