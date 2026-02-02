@@ -6,6 +6,8 @@ Before building any workflows, let’s briefly understand how Kestra organizes a
 
 In Kestra, everything is built around the idea of **flows**.
 
+<img src="ss/02/flows.png" width="75%">
+
 A flow represents an end-to-end workflow composed of:
 
 - tasks — what gets executed
@@ -46,3 +48,5 @@ Here’s what this workflow includes:
 Note:
 
 Once a flow is created, its namespace and id CANNOT be changed.
+
+<img src="ss/02/edit-flows.png" width="75%">
