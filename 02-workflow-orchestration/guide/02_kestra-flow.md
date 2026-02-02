@@ -42,3 +42,7 @@ Here’s what this workflow includes:
 - A trigger that runs the flow every day at 10 AM  
 - Plugin defaults that send all log messages at the `ERROR` level  
 - A concurrency limit of two executions — any additional runs while two are active will fail
+
+Note:
+
+Once a flow is created, its namespace and id CANNOT be changed.
