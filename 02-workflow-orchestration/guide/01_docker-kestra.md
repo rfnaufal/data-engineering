@@ -2,10 +2,9 @@
 
 ### Create Volumes for Postgres and Kestra
 
-# Navigate to the existing project directory
-cd /Users/{username}/Github/Data-Engineering/pipeline
+Navigate to the existing project directory
 
-Create two folders:
+cd /workspaces/data-engineering/pipeline in the codespace and create two folders:
 - kestra_postgres_data
 - kestra_data
 
@@ -15,6 +14,8 @@ In the `docker-compose.yaml`, we will add a container for Kestra along with its 
 
 To do this, we need to replace the `docker-compose.yaml` from Module 2 in the working directory.  
 Before that, I copied the previous `docker-compose.yaml` file into the `01-docker` folder.
+
+#### Containerized kestra
 
 run `docker compose up` command then monitor using `docker compose ps` 
 
