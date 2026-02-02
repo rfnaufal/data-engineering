@@ -8,18 +8,28 @@ cd /workspaces/data-engineering/pipeline in the codespace and create two folders
 - kestra_postgres_data
 - kestra_data
 
-<img src="../screenshots/01/3 docker-python-bash.png" width="75%"> <br>
+These directories will be used to persist data for Postgres and Kestra.
 
-In the `docker-compose.yaml`, we will add a container for Kestra along with its configuration.
+### Update docker-compose.yaml
 
-To do this, we need to replace the `docker-compose.yaml` from Module 2 in the working directory.  
-Before that, I copied the previous `docker-compose.yaml` file into the `01-docker` folder.
+Next, we will add a Kestra container along with its required configuration.
 
-#### Containerized kestra
+To do this, replace the docker-compose.yaml file in the working directory with the updated version.
+(For reference, the previous docker-compose.yaml from Module 2 has been moved to the 01-docker folder.)
 
-run `docker compose up` command then monitor using `docker compose ps` 
+### Run Kestra in Containers
 
-to access from my laptop to codespace add port manually in this order:
-1. add port 8085
-2. then port 8080
-<img src="ss/01-addport.png" width="75%"> <br>
+Start the services:
+`docker compose up`
+
+Verify that the containers are running:
+`docker compose ps`
+
+### Expose Ports in Codespaces
+
+To access Kestra from your local browser, manually forward the following ports in Codespaces:
+
+- 8085 — Kestra UI
+- 8080 — Kestra API
+
+<img src="ss/01-addport.png" width="75%">
