@@ -123,6 +123,8 @@ I created this flow:
 
 This flow uses a Python script to send a GET request to the Kestra API.
 
+<img src="ss/03/05.png" width="75%">
+
 ---
 
 **Note: Networking in GitHub Codespaces**
