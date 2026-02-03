@@ -63,3 +63,18 @@ When we execute the workflow, Kestra will prompt for the `name` input, using the
 ---
 
 ### Orchestrate Python Code (My First Workflow)
+
+Here is the provided YAML file used to execute a Python script:  
+[`02_python.yaml`](https://github.com/rfnaufal/data-engineering/blob/main/02-workflow-orchestration/flows/02_python.yaml)
+
+This example comes from the Zoomcamp material.
+
+For my own experiment, I wanted to try a different use case — retrieving the list of flows using Kestra’s API.
+
+the steps:
+1. copy from example (Execute a Python script and generate an output.) on the left when we edit 02_python.yaml 
+    <img src="ss/03/01.png" width="75%">
+2. paste in the new flow, modify id and namespace of the flows
+    <img src="ss/03/02.png" width="75%">
+3. 
+
