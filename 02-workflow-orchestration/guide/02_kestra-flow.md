@@ -71,16 +71,26 @@ This example comes from the Zoomcamp material.
 
 For my own experiment, I wanted to try a different use case — retrieving the list of flows using Kestra’s API.
 
-the steps:
-1. copy from example (Execute a Python script and generate an output.) on the left when we edit 02_python.yaml 
+Here’s how I did it:
+
+1. Copy the example flow **“Execute a Python script and generate an output”** from the left panel when editing `02_python.yaml`.
+
     <img src="ss/03/01.png" width="75%">
-2. paste in the new flow, modify id and namespace of the flows
+
+2. Paste it into a new flow, then modify the `id` and `namespace`.
+
     <img src="ss/03/02.png" width="75%">
-3. get API reference from the website https://kestra.io/docs/api-reference/open-source#get-/api/v1/-tenant-/flows/search
-4. test access directly to kestra API based on no 3 url http://localhost:8080/api/v1/flows/search
-    
+
+3. Find the API reference from the Kestra documentation:  
+   https://kestra.io/docs/api-reference/open-source#get-/api/v1/-tenant-/flows/search
+
+4. Test the endpoint directly by accessing the Kestra API locally:
+
+   http://localhost:8080/api/v1/flows/search
+
     <img src="ss/03/03.png" width="75%">
     
     <img src="ss/03/04.png" width="75%">
+
 
 
