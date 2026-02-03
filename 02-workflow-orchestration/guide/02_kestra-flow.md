@@ -60,4 +60,6 @@ When we execute the workflow, Kestra will prompt for the `name` input, using the
 
 <img src="ss/02/input.png" width="75%">
 
+---
+
 ### Orchestrate Python Code (My First Workflow)
