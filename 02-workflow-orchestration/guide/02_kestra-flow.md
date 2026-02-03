@@ -74,8 +74,6 @@ This example comes from the Zoomcamp material. this the high level flow as it is
 
 For my own experiment, I wanted to try a different use case — retrieving the list of flows using Kestra’s API.
 
-<img src="ss/03/get-flow.png" width="75%">
-
 ---
 
 ##### Steps I Followed
