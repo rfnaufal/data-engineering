@@ -77,7 +77,7 @@ For my own experiment, I wanted to try a different use case — retrieving the l
 
 ---
 
-**Steps I Followed**
+**How I Did It**
 
 **1. Copy the example flow**
 
