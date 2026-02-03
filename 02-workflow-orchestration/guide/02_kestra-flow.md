@@ -69,7 +69,8 @@ When we execute the workflow, Kestra will prompt for the `name` input, using the
 Here is the provided YAML file used to execute a Python script:  
 [`02_python.yaml`](https://github.com/rfnaufal/data-engineering/blob/main/02-workflow-orchestration/flows/02_python.yaml)
 
-This example comes from the Zoomcamp material.
+This example comes from the Zoomcamp material. this the high level flow as it is:
+<img src="ss/03/python-diagram.png" width="75%">
 
 For my own experiment, I wanted to try a different use case — retrieving the list of flows using Kestra’s API.
 
