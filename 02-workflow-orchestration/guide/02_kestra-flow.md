@@ -76,5 +76,11 @@ the steps:
     <img src="ss/03/01.png" width="75%">
 2. paste in the new flow, modify id and namespace of the flows
     <img src="ss/03/02.png" width="75%">
-3. 
+3. get API reference from the website https://kestra.io/docs/api-reference/open-source#get-/api/v1/-tenant-/flows/search
+4. test access directly to kestra API based on no 3 url http://localhost:8080/api/v1/flows/search
+    
+    <img src="ss/03/03.png" width="75%">
+    
+    <img src="ss/03/04.png" width="75%">
+
 
