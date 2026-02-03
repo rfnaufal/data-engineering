@@ -64,6 +64,8 @@ When we execute the workflow, Kestra will prompt for the `name` input, using the
 
 ### Orchestrate Python Code (My First Workflow)
 
+#### Calling Kestra API from a Python Flow (Codespaces Setup)
+
 Here is the provided YAML file used to execute a Python script:  
 [`02_python.yaml`](https://github.com/rfnaufal/data-engineering/blob/main/02-workflow-orchestration/flows/02_python.yaml)
 
@@ -71,26 +73,80 @@ This example comes from the Zoomcamp material.
 
 For my own experiment, I wanted to try a different use case — retrieving the list of flows using Kestra’s API.
 
-Here’s how I did it:
+<img src="ss/03/get-flow-diagram.png" width="75%">
 
-1. Copy the example flow **“Execute a Python script and generate an output”** from the left panel when editing `02_python.yaml`.
+---
 
-    <img src="ss/03/01.png" width="75%">
+##### Steps I Followed
 
-2. Paste it into a new flow, then modify the `id` and `namespace`.
+**1. Copy the example flow**
 
-    <img src="ss/03/02.png" width="75%">
+Copy **“Execute a Python script and generate an output”** from the left panel when editing `02_python.yaml`.
 
-3. Find the API reference from the Kestra documentation:  
-   https://kestra.io/docs/api-reference/open-source#get-/api/v1/-tenant-/flows/search
+<img src="ss/03/01.png" width="75%">
 
-4. Test the endpoint directly by accessing the Kestra API locally:
+---
 
-   http://localhost:8080/api/v1/flows/search
+**2. Create a new flow**
 
-    <img src="ss/03/03.png" width="75%">
-    
-    <img src="ss/03/04.png" width="75%">
+Paste it into a new flow and modify the `id` and `namespace`.
 
+<img src="ss/03/02.png" width="75%">
+
+---
+
+**3. Find the API endpoint**
+
+From Kestra API documentation:
+
+https://kestra.io/docs/api-reference/open-source#get-/api/v1/-tenant-/flows/search
+
+---
+
+**4. Test API directly in browser**
+
+Access locally:
+
+http://localhost:8080/api/v1/flows/search
+
+<img src="ss/03/03.png" width="75%">
+
+<img src="ss/03/04.png" width="75%">
+
+This works because my laptop browser connects to the forwarded Codespaces port.
+
+### 5. Call the API inside a flow
+
+I created this flow:
+
+[`02_python-get-flows.yaml`](https://github.com/rfnaufal/data-engineering/blob/main/02-workflow-orchestration/flows/02_python-get-flows.yaml)
+
+This flow uses a Python script to send a GET request to the Kestra API.
+
+---
+
+**Note: Networking in GitHub Codespaces**
+
+> I access Kestra UI from my **laptop browser**, while Kestra itself runs inside **Docker Compose in GitHub Codespaces**.
+
+Flow execution uses the **Docker task runner**, which launches each task in a separate container.
+
+Inside those containers:
+
+- `localhost` refers to the task container itself
+- Docker Compose service names (e.g. `kestra`) are not reachable
+- The Codespaces VM host must be accessed explicitly
+
+---
+
+**Correct Solution: Use `host.docker.internal`**
+
+Flow configuration:
+
+```yaml
+taskRunner:
+  type: io.kestra.plugin.scripts.runner.docker.Docker
+  extraHosts:
+    - "host.docker.internal:host-gateway"
 
 
