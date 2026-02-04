@@ -141,7 +141,7 @@ Inside those containers:
 
 ---
 
-**Correct Solution: Use `host.docker.internal`**
+** Solution: Use `host.docker.internal`**
 
 Flow configuration:
 
