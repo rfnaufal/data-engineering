@@ -7,11 +7,11 @@ We will use [`03_getting_started_data_pipeline`](https://github.com/rfnaufal/dat
 
 here is the ETL process within the pipeline. as input we choose the columns (brand, price).
 there are 3 taskId :
-
+```mermaid
 graph LR
   Extract[Extract Data via HTTP REST API] --> Transform[Transform Data in Python]
   Transform --> Query[Query Data with DuckDB]
-
+```
 
 1. Extract 
     download download raw products JSON
