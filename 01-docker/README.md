@@ -17,7 +17,8 @@ Personal technical notes for this module:
 - [Data Ingestion Processes](guide/04_data-ingestion.md)  
 - [Managing PostgreSQL with pgAdmin](guide/05_pgadmin.md)  
 - [Multi-Service Setup with Docker Compose](guide/06_docker-compose.md)  
-- [SQL Fundamentals for Data Engineering](guide/07_sql.md)  
+- [GCP](guide/08_gcp-auth-access.md)  
+- [Terraform](guide/09_terraform.md)  
 
 ------------------------------------------------------------------------
 
