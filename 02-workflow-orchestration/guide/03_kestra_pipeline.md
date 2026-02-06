@@ -14,11 +14,12 @@ graph LR
 ```
 
 1. Extract 
-    download download raw products JSON
+    Download raw products JSON
 2. Tranform
     Python filters it into products.json
 3. Query
     DuckDB computes average price per brand and stores the result
+    
     the actual query:
     ```sql
     SELECT brand, round(avg(price), 2) as avg_price

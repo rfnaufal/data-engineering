@@ -70,10 +70,10 @@ Here is the provided YAML file used to execute a Python script:
 [`02_python.yaml`](https://github.com/rfnaufal/data-engineering/blob/main/02-workflow-orchestration/flows/02_python.yaml)
 
 This example comes from the Zoomcamp material. this the high level flow as it is:
-<img src="ss/03/python-diagram.png" width="75%">
+<img src="ss/02/python-diagram.png" width="75%">
 
 For my own experiment, I wanted to try a different use case — retrieving the list of flows using Kestra’s API.
-<img src="ss/03/get-flow.png" width="75%">
+<img src="ss/02/get-flow.png" width="75%">
 
 ---
 
@@ -83,7 +83,7 @@ For my own experiment, I wanted to try a different use case — retrieving the l
 
 Copy **“Execute a Python script and generate an output”** from the left panel when editing `02_python.yaml`.
 
-<img src="ss/03/01.png" width="75%">
+<img src="ss/02/01.png" width="75%">
 
 ---
 
@@ -91,7 +91,7 @@ Copy **“Execute a Python script and generate an output”** from the left pane
 
 Paste it into a new flow and modify the `id` and `namespace`.
 
-<img src="ss/03/02.png" width="75%">
+<img src="ss/02/02.png" width="75%">
 
 ---
 
@@ -109,9 +109,9 @@ Access locally:
 
 http://localhost:8080/api/v1/flows/search
 
-<img src="ss/03/03.png" width="75%">
+<img src="ss/02/03.png" width="75%">
 
-<img src="ss/03/04.png" width="75%">
+<img src="ss/02/04.png" width="75%">
 
 This works because my laptop browser connects to the forwarded Codespaces port.
 
@@ -123,7 +123,7 @@ I created this flow:
 
 This flow uses a Python script to send a GET request to the Kestra API.
 
-<img src="ss/03/05.png" width="75%">
+<img src="ss/02/05.png" width="75%">
 
 ---
 
