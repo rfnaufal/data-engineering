@@ -33,6 +33,6 @@ Kestra position as workflow orchestration that can build workflow as code, on co
 Personal technical notes for this module:
 
 - [Dockerizing Kestra](guide/01_docker-kestra.md)  
-- [Build Furst Workflow](guide/02_kestra-flow.md)  
+- [Build First Workflow](guide/02_kestra-flow.md)  
 - [Build Data Pipeline](guide/03_kestra_pipeline.md)  
 

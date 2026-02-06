@@ -11,13 +11,13 @@
 
 Personal technical notes for this module:
 
-👉 [Docker Basics – Containerization](guide/01_Containerization.md)  
-👉 [Building Data Pipelines](guide/02_Data-Pipeline.md)  
-👉 [Docker + PostgreSQL Workflow](guide/03_docker-pipeline-postgresql.md)  
-👉 [Data Ingestion Processes](guide/04_data-ingestion.md)  
-👉 [Managing PostgreSQL with pgAdmin](guide/05_pgadmin.md)  
-👉 [Multi-Service Setup with Docker Compose](guide/06_docker-compose.md)  
-👉 [SQL Fundamentals for Data Engineering](guide/07_sql.md)  
+- [Docker Basics – Containerization](guide/01_Containerization.md)  
+- [Building Data Pipelines](guide/02_Data-Pipeline.md)  
+- [Docker + PostgreSQL Workflow](guide/03_docker-pipeline-postgresql.md)  
+- [Data Ingestion Processes](guide/04_data-ingestion.md)  
+- [Managing PostgreSQL with pgAdmin](guide/05_pgadmin.md)  
+- [Multi-Service Setup with Docker Compose](guide/06_docker-compose.md)  
+- [SQL Fundamentals for Data Engineering](guide/07_sql.md)  
 
 ------------------------------------------------------------------------
 
