@@ -47,10 +47,10 @@ graph LR
 
     here are the outputs:
 
-        <img src="ss/03/04-output-extract.png" width="75%"> <br>
-        <img src="ss/03/04-output-query.png" width="75%"> <br>
-        <img src="ss/03/04-output-transform-data.png" width="75%"> <br>
-        <img src="ss/03/04-output-transform-product.png" width="75%"> <br>
+    <img src="ss/03/04-output-extract.png" width="75%"> <br>
+    <img src="ss/03/04-output-query.png" width="75%"> <br>
+    <img src="ss/03/04-output-transform-data.png" width="75%"> <br>
+    <img src="ss/03/04-output-transform-product.png" width="75%"> <br>
 
 
 
