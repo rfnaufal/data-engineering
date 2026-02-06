@@ -35,4 +35,5 @@ Personal technical notes for this module:
 - [Dockerizing Kestra](guide/01_docker-kestra.md)  
 - [Build First Workflow](guide/02_kestra-flow.md)  
 - [Build Data Pipeline](guide/03_kestra_pipeline.md)  
+- [Load Taxi Data to PostgreSQL](04_load-taxi-data-postgres.md)
 

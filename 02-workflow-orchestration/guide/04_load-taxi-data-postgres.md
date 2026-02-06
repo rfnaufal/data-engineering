@@ -29,7 +29,7 @@ graph LR
   classDef green fill:#32CD32,stroke:#000,stroke-width:1px;
 ```
 
-    <img src="ss/03/05-output-transform-product.png" width="75%"> <br>
+<img src="ss/03/05-output-transform-product.png" width="75%"> <br>
 
 
 
