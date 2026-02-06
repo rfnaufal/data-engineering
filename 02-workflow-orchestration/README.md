@@ -25,3 +25,14 @@ Kestra position as workflow orchestration that can build workflow as code, on co
 
 - 📝 Homework: https://github.com/rfnaufal/data-engineering/blob/main/02-workflow-orchestration/guide/99_homework.md
 - 🛠 Working Directory: https://github.com/rfnaufal/data-engineering/tree/main/pipeline
+
+---
+
+## 🗒️ Guide and Notes
+
+Personal technical notes for this module:
+
+- [Dockerizing Kestra](guide/01_docker-kestra.md)  
+- [Build Furst Workflow](guide/02_kestra-flow.md)  
+- [Build Data Pipeline](guide/03_kestra_pipeline.md)  
+
