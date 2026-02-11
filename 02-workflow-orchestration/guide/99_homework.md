@@ -1,18 +1,9 @@
 ## Data
 
-the green taxi trips data for November 2025:
+the green taxi trips data for 2019-2020:
 
-https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_2025-11.parquet
+https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/green/download
 
-the dataset with zones:
-
-https://github.com/DataTalksClub/nyc-tlc-data/releases/download/misc/taxi_zone_lookup.csv
-
-To find the answer, I used a Jupyter Notebook in GitHub Codespaces.
-
-I downloaded the dataset and tested the Parquet file directly in the notebook.
-
-and run `uv run jupyter notebook`
 
 **Q1: Within the execution for Yellow Taxi data for the year 2020 and month 12: what is the uncompressed file size (i.e. the output file yellow_tripdata_2020-12.csv of the extract task)?**
 
