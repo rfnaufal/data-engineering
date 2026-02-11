@@ -14,98 +14,17 @@ I downloaded the dataset and tested the Parquet file directly in the notebook.
 
 and run `uv run jupyter notebook`
 
-### Q1: Counting short trips
+### Q1: Within the execution for Yellow Taxi data for the year 2020 and month 12: what is the uncompressed file size (i.e. the output file yellow_tripdata_2020-12.csv of the extract task)?
 
-For the trips in November 2025 (lpep_pickup_datetime between '2025-11-01' and '2025-12-01', exclusive of the upper bound), how many trips had a trip_distance of less than or equal to 1 mile?
+<img src="../ss/99/01.png" width="75%"> <br>
 
-<img src="../screenshots/99/01.png" width="75%"> <br>
 
-<img src="../screenshots/99/02-1.png" width="75%"> <br>
+### Q2: What is the rendered value of the variable file when the inputs taxi is set to green, year is set to 2020, and month is set to 04 during execution? 
 
-### Notes (Approach)
+<img src="../ss/99/02.png" width="75%"> <br>
 
-This question can be solved using **filter + count**:
 
-- **Filter (Date Range)**
-
-   - Use `.between("2025-11-01", "2025-12-01", inclusive="left")` to select trips in **November 2025**.
-   - `inclusive="left"` means:
-      - include `2025-11-01`
-      - exclude `2025-12-01` (upper bound)
-
-- **Filter (Trip Distance)**
-
-   - Keep only trips where `trip_distance <= 1` mile.
-
-- **Count Rows**
-
-   - Use `.shape[0]` to count how many rows (trips) match the conditions.
-
-- The `.between()` method supports an `inclusive` option to control whether the start/end boundaries are included.  
-   Here is the comparison:
-
-| `inclusive` value | Start boundary included? | End boundary included? | Meaning (interval) | Sample interval (`start=10`, `end=20`) | Best use case |
-|------------------|--------------------------|-------------------------|-------------------|----------------------------------------|--------------|
-| `"both"`         | ✅ Yes                   | ✅ Yes                  | `[start, end]`    | Includes **10 ✅** and **20 ✅**         | Include both endpoints |
-| `"left"`         | ✅ Yes                   | ❌ No                   | `[start, end)`    | Includes **10 ✅**, excludes **20 ❌**    | ✅ Best for month/date ranges (exclude upper bound) |
-| `"right"`        | ❌ No                    | ✅ Yes                  | `(start, end]`    | Excludes **10 ❌**, includes **20 ✅**    | Exclude start, include end |
-| `"neither"`      | ❌ No                    | ❌ No                   | `(start, end)`    | Excludes **10 ❌** and **20 ❌**         | Strict filtering (exclude both endpoints) |
-
-### Q2: Longest trip for each day
-
-Which was the pick up day with the longest trip distance? Only consider trips with trip_distance less than 100 miles (to exclude data errors).
-
-```python
-# Filter trips to exclude outliers/data errors
-taxi_trip_100 = taxi_trip.loc[taxi_trip["trip_distance"] < 100].copy()
-
-# Extract pickup day (date only)
-taxi_trip_100["pickup_day"] = taxi_trip_100["lpep_pickup_datetime"].dt.date
-
-# Calculate total trip distance per pickup day
-daily_total_distance = taxi_trip_100.groupby("pickup_day")["trip_distance"].sum()
-
-# Pickup day with the longest total trip distance
-pickup_day_longest = daily_total_distance.idxmax()
-longest_total_distance = daily_total_distance.max()
-
-pickup_day_longest, longest_total_distance
-
-# Pickup day with the longest total trip distance: pickup_day_longest
-
-# Total trip distance on that day: longest_total_distance
-```
-
-<img src="../screenshots/99/03.png" width="75%"> <br>
-
-#### Notes (Approach)
-
-`.copy()` forces Pandas to create a separate DataFrame in memory, so changes to `taxi_trip_100` will NOT affect the original `taxi_trip`.
-
-taxi_trip_100 = taxi_trip.loc[taxi_trip["trip_distance"] < 100].copy()
-
-This question can be solved using **filter + transform + groupby + sum + max**:
-
-- **Filter (Remove Outliers)**
-
-   - Only consider trips with `trip_distance < 100` to exclude data errors/outliers.
-
-- **Transform (Extract Pickup Day)**
-
-   - Create a new column `pickup_day` from `lpep_pickup_datetime`.
-   - This keeps only the **date part** (day) so trips can be grouped per day.
-
-- **GroupBy + Sum**
-
-   - Group trips by `pickup_day`.
-   - Sum `trip_distance` to calculate the __total trip distance per day__.
-
-- **Max (Find the Top Day)**
-
-   - Use `idxmax()` to find the pickup day with the **largest total trip distance**.
-   - Use `max()` to get the **total distance value** for that day.
-
-## Q3: Biggest pickup zone
+## Q3: How many rows are there for the Yellow Taxi data for all CSV files in the year 2020?
 
 Which was the pickup zone with the largest total_amount (sum of all trips) on November 18th, 2025?
 
