@@ -18,7 +18,11 @@ https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/green/download
 
 **Q3: How many rows are there for the Yellow Taxi data for all CSV files in the year 2020?**
 
-To get the answer I executed multiple pipeline for all months in year 2020 however I found issue `The CSRF session token is missing. You need to refresh the page.`
+To get the answer I executed multiple pipeline for all months in year 2020 
+
+<img src="ss/99/03-01.png" width="75%"> <br>
+
+however I found issue `The CSRF session token is missing. You need to refresh the page.`
 
 then I tried the following:
 1. open in incognito
@@ -27,8 +31,6 @@ then I tried the following:
 the issue still exist. there are lots of solution but still not works. so in this case i didnt submit the homework. 
 
 `answer: `
-
-<img src="ss/99/03-01.png" width="75%"> <br>
 
 <img src="ss/99/03.png" width="75%"> <br>
 
