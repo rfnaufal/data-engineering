@@ -24,7 +24,7 @@ To get the answer I executed the pipeline for all months in year 2020
 
 In my case, I found my disk space less than 1% 
 
-<img src="ss/99/03-03.png" width="75%"> <br>
+<img src="ss/99/03-02.png" width="75%"> <br>
 
 I tried to update machine types the storage available only up to 32 GB (free)
 
