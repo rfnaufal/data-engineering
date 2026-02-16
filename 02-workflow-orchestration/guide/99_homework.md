@@ -22,7 +22,15 @@ To get the answer I executed multiple pipeline for all months in year 2020
 
 <img src="ss/99/03-01.png" width="75%"> <br>
 
-however I found issue `The CSRF session token is missing. You need to refresh the page.`
+In my case, I found my disk space less than 1% 
+
+<img src="ss/99/03-03.png" width="75%"> <br>
+
+I tried to update machine types the storage available only up to 32 GB (free)
+
+<img src="ss/99/03-03.png" width="75%"> <br>
+
+meanwhile I check the tables through pgadmin, I found issue `The CSRF session token is missing. You need to refresh the page.`
 
 then I tried the following:
 1. open in incognito
@@ -30,15 +38,4 @@ then I tried the following:
 
 the issue still exist. there are lots of solution but still not works. so in this case i didnt submit the homework. 
 
-`answer: `
-
-<img src="ss/99/03.png" width="75%"> <br>
-
-**Q4: How many rows are there for the Green Taxi data for all CSV files in the year 2020?**
-<img src="ss/99/04.png" width="75%"> <br>
-
-**Q5: How many rows are there for the Yellow Taxi data for the March 2021 CSV file?**
-<img src="ss/99/05.png" width="75%"> <br>
-
-**Q6: How would you configure the timezone to New York in a Schedule trigger?**
-<img src="ss/99/06.png" width="75%"> <br>
+Unfortunately I cannot continue my learning in datatalk. Hiks. 
