@@ -26,6 +26,10 @@ then I tried the following:
 the issue still exist. there are lots of solution but still not works. so in this case i didnt submit the homework. 
 
 **Q3: How many rows are there for the Yellow Taxi data for all CSV files in the year 2020?**
+to get the answer I executed multiple pipeline for all months in year 2020
+`answer: `
+<img src="ss/99/03-01.png" width="75%"> <br>
+
 <img src="ss/99/03.png" width="75%"> <br>
 
 **Q4: How many rows are there for the Green Taxi data for all CSV files in the year 2020?**
