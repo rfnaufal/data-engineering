@@ -18,7 +18,7 @@ https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/green/download
 
 **Q3: How many rows are there for the Yellow Taxi data for all CSV files in the year 2020?**
 
-To get the answer I executed multiple pipeline for all months in year 2020 
+To get the answer I executed the pipeline for all months in year 2020 
 
 <img src="ss/99/03-01.png" width="75%"> <br>
 
